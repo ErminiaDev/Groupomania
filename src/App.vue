@@ -1,6 +1,9 @@
 <template>
   <div>
     <Header />
+    <div class="main">
+      <h1 class="pt-5">Groupomania Social Network</h1>
+    </div>
     <Footer />
   </div>
 </template>
@@ -29,5 +32,9 @@ export default {
 
 a, a:hover {
     color: #fff;
+}
+
+.main {
+  height: 200px
 }
 </style>

@@ -27,8 +27,5 @@ export default {
 </script>
 
 <style scoped>
-    nav img {
-        height: 60px;
-        margin-right: 60px;
-    }
+
 </style>

@@ -13,3 +13,9 @@ export default {
     name: 'FooterLogo'
 }
 </script>
+
+<style scoped>
+    img {
+        height: 30px;
+    }
+</style>
