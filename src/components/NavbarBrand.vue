@@ -1,7 +1,7 @@
 <template>
-    <a class="navbar-brand mr-5 py-3" href="#">
+    <router-link class="navbar-brand mr-5 py-3" to="/">
         <img src="logo/icon-left-font-monochrome-white.svg" alt="">
-    </a>
+    </router-link>
 </template>
 
 <script>

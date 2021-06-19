@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div id="app">
     <Header />
-    <div class="main">
-      <h1 class="pt-5">Groupomania Social Network</h1>
-    </div>
+    <router-view/>
     <Footer />
   </div>
 </template>
@@ -34,7 +32,4 @@ a, a:hover {
     color: #fff;
 }
 
-.main {
-  height: 200px
-}
 </style>

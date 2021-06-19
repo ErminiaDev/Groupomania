@@ -5,14 +5,14 @@
           {{ dd_title }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">{{ dd_item1 }}</a>
+          <router-link class="dropdown-item" to="/publications-recentes">{{ dd_item1 }}</router-link>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">{{ dd_item2 }}</a>
-          <a class="dropdown-item" href="#">{{ dd_item3 }}</a>
+          <router-link class="dropdown-item" to="/publications-partagees">{{ dd_item2 }}</router-link>
+          <router-link class="dropdown-item" to="/publications-aimees">{{ dd_item3 }}</router-link>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">{{ navlink }}</a>
+        <router-link class="nav-link" to="/mon-profile">{{ navlink }}</router-link>
       </li>
     </ul>
 </template>
