@@ -3,8 +3,17 @@
         <NavbarBrand/>
         <NavbarToggler/>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <NavbarItems/>
-            <NavbarSearch/>
+            <NavbarItems
+                dd_title="Publications"
+                dd_item1="Récentes"
+                dd_item2="Partagées"
+                dd_item3="Aimées"
+                navlink="Mon profile"
+            />
+            <NavbarButtons
+                btn_name1="S'inscrire"
+                btn_name2="Se connecter"
+            />
         </div>
     </nav>
 </template>
@@ -13,7 +22,7 @@
 import NavbarBrand from './NavbarBrand.vue'
 import NavbarItems from './NavbarItems.vue'
 import NavbarToggler from './NavbarToggler.vue'
-import NavbarSearch from './NavbarSearch.vue'
+import NavbarButtons from './NavbarButtons.vue'
 
 export default {
     name: 'Header',
@@ -21,7 +30,7 @@ export default {
         NavbarBrand,
         NavbarItems,
         NavbarToggler,
-        NavbarSearch
+        NavbarButtons
     }
 }
 </script>

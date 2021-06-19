@@ -1,10 +1,18 @@
 <template>
     <footer class="bg-dark text-light p-5">
-      <FooterLogo/>
+      <FooterLogo
+      />
       <div class="row pt-4">
-        <FooterAddress/>
+        <FooterAddress 
+          entreprise="Réseau social de l'entreprise CONNECT-E"
+          adresse="95 rue de la société"
+          commune="67000 STRASBOURG"
+        />
         <div class="col-3"></div>
-        <FooterLegal/>
+        <FooterLegal
+          footerlink1="Mentions legales"
+          footerlink2="Politique de confidentialité"
+        />
       </div>
     </footer>
 </template>

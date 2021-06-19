@@ -1,15 +1,20 @@
 <template>
     <div class="col-5">
-      <p>Réseau social de l'entreprise CONNECT-E</p>
+      <p>{{ entreprise }}</p>
       <address>
-        <p>95 rue de la société</p>
-        <p>67000 STRASBOURG</p>
+        <p>{{ adresse }}</p>
+        <p>{{ commune }}</p>
       </address>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'FooterAddress'
+    name: 'FooterAddress',
+    props: {
+      entreprise: String,
+      adresse: String,
+      commune: String
+    }
 }
 </script>
