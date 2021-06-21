@@ -1,16 +1,16 @@
 <template>
     <div class="container">
         <h1 class="py-5">Utilisateur: {{ $route.params.name }}</h1>
-        <Profile/>
+        <User/>
     </div>
 </template>
 
 <script>
-    import Profile from "../components/Profile.vue"
+    import User from "../components/User.vue"
 
     export default {
         components: {
-            Profile,
+            User,
         }
     }
 </script>

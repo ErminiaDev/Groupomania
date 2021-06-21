@@ -32,4 +32,10 @@ a, a:hover {
     color: #fff;
 }
 
+
+label {
+    font-weight: 400;
+}
+
+
 </style>

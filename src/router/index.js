@@ -3,6 +3,7 @@ import Home from "@/views/Home.vue";
 import Posts from "@/views/Posts.vue";
 import SharedPosts from "@/views/SharedPosts.vue";
 import LikedPosts from "@/views/LikedPosts.vue";
+import AddPost from "@/views/AddPost.vue";
 import UserDetail from "@/views/UserDetail.vue";
 import UserProfile from "@/views/UserProfile.vue";
 import Users from "@/views/Users.vue";
@@ -34,6 +35,11 @@ const routes = [
       path: "/publications-aimees/:user-id",
       name: "Publications aimées",
       component: LikedPosts,
+  },
+  {
+      path: "/ajouter-publication",
+      name: "Ajouter une publication",
+      component: AddPost,
   },
   {
         path: "/profils",

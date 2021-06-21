@@ -18,7 +18,7 @@
 
 <script>
     export default {
-        name: 'Profile'
+        name: 'User'
     }
 </script>
 
