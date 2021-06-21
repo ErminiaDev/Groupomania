@@ -1,47 +1,64 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Accueil from "@/views/Accueil.vue";
-import PubsRecentes from "@/views/PubsRecentes.vue";
-import PubsPartagees from "@/views/PubsPartagees.vue";
-import PubsAimees from "@/views/PubsAimees.vue";
-import Profile from "@/views/Profile.vue";
-import Connexion from "@/views/Connexion.vue";
-import Inscription from "@/views/Inscription.vue";
+import Home from "@/views/Home.vue";
+import Posts from "@/views/Posts.vue";
+import SharedPosts from "@/views/SharedPosts.vue";
+import LikedPosts from "@/views/LikedPosts.vue";
+import UserDetail from "@/views/UserDetail.vue";
+import UserProfile from "@/views/UserProfile.vue";
+import Users from "@/views/Users.vue";
+import SignIn from "@/views/SignIn.vue";
+import SignUp from "@/views/SignUp.vue";
+import PostDetail from "@/views/PostDetail.vue";
 
 const routes = [
   {
     path: "/",
     name: "Accueil",
-    component: Accueil,
+    component: Home,
   },
   {
-    path: "/publications-recentes",
-    name: "Publications récentes",
-    component: PubsRecentes,
+    path: "/publications",
+    name: "Publications",
+    component: Posts,
   },
   {
-      path: "/publications-partagees",
+    path: "/publications/:id",
+    component: PostDetail,
+  },
+  {
+      path: "/publications-partagees/:user-id",
       name: "Publications partagées",
-      component: PubsPartagees,
+      component: SharedPosts,
   },
   {
-      path: "/publications-aimees",
+      path: "/publications-aimees/:user-id",
       name: "Publications aimées",
-      component: PubsAimees,
+      component: LikedPosts,
   },
   {
-        path: "/mon-profile",
-        name: "Mon profile",
-        component: Profile,
+        path: "/profils",
+        name: "Utilisateurs",
+        component: Users,
+  },
+  {
+        path: "/profils/:user-id",
+        name: "Profil Utilisateur",
+        component: UserDetail,
+  },
+  {
+        path: "/profils/:name",
+        name: "Mon profil",
+        component: UserProfile,
   },
   {
         path: "/inscription",
         name: "Inscription",
-        component: Inscription,
+        component: SignUp,
   },
   {
         path: "/connexion",
         name: "Connexion",
-        component: Connexion,
+        component: SignIn,
   },
 ];
 

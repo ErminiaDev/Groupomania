@@ -8,7 +8,9 @@
                 dd_item1="Récentes"
                 dd_item2="Partagées"
                 dd_item3="Aimées"
-                navlink="Mon profile"
+                navlink1="Mon profil"
+                navlink2="Profil utilisateur"
+                navlink3="Utilisateurs"
             />
             <NavbarButtons
                 btn_name1="S'inscrire"
