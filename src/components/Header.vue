@@ -5,9 +5,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <NavbarItems
                 dd_title="Publications"
-                dd_item1="Récentes"
-                dd_item2="Partagées"
-                dd_item3="Aimées"
+                dd_item1="Toutes les publications"
+                dd_item2="Publications partagées"
+                dd_item3="Publications aimées"
                 navlink1="Mon profil"
                 navlink2="Profil utilisateur"
                 navlink3="Utilisateurs"
