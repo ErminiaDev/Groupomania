@@ -4,16 +4,16 @@
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-sm-6 text-left "><i>Post date</i></div>
-                  <div class="col-sm-6 text-right">Post category</div>
+                  <div class="col-sm-6 text-left "><i> {{ post.date }} </i></div>
+                  <div class="col-sm-6 text-right"> {{ post.category }} </div>
                 </div>
               </div>
               <div class="card-body">
-                <h5 class="card-title">Post title</h5>
-                <p class="card-text">Post description</p>
+                <h5 class="card-title"> {{ post.title }} </h5>
+                <p class="card-text"> {{ post.text }} </p>
                 <a href="#" class="btn btn-outline-info">
-                    <i class="mr-2 far fa-heart"></i>
-                    <span>Like</span>
+                    <span>Aimé  {{ post.liked }}&nbsp;</span>
+                    <i class="ml-1 mr-2 far fa-heart"></i>
                 </a>
               </div>
             </div>
@@ -24,6 +24,9 @@
 <script>
     export default {
         name: 'Post',
+        props: {
+          post: Object
+        }
     }
 </script>
 
@@ -31,6 +34,9 @@
   h5 {
     font-weight: 600;
     font-size: 1.5em;
+  }
+  svg{
+    color: red;
   }
 </style>
 
