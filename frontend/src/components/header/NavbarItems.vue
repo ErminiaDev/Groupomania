@@ -5,9 +5,9 @@
           {{ dd_title1 }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <router-link class="dropdown-item" to="/profils">{{ dd1_item1 }}</router-link>
+          <router-link class="dropdown-item" to="/utilisateurs">{{ dd1_item1 }}</router-link>
           <div class="dropdown-divider"></div>
-          <router-link class="dropdown-item" to="/profils/:id">{{ dd1_item2 }}</router-link>
+          <router-link class="dropdown-item" to="/utilisateurs/:id">{{ dd1_item2 }}</router-link>
         </div>
       </li>
       <li class="nav-item dropdown">
