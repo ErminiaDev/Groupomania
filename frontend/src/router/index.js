@@ -4,6 +4,7 @@ import AllPosts from "@/views/AllPosts.vue";
 import SharedPosts from "@/views/SharedPosts.vue";
 import LikedPosts from "@/views/LikedPosts.vue";
 import AddPost from "@/views/AddPost.vue";
+import DeletePost from "@/views/DeletePost.vue";
 import UserDetail from "@/views/UserDetail.vue";
 import UserProfile from "@/views/UserProfile.vue";
 import AllUsers from "@/views/AllUsers.vue";
@@ -43,17 +44,22 @@ const routes = [
       component: AddPost,
   },
   {
-        path: "/profils",
+      path: "/supprimer-publication",
+      name: "Supprimer une publication",
+      component: DeletePost,
+  },
+  {
+        path: "/utilisateurs",
         name: "AllUsers",
         component: AllUsers,
   },
   {
-        path: "/profils/:user-id",
+        path: "/utilisateurs/:user-id",
         name: "UserDetail",
         component: UserDetail,
   },
   {
-        path: "/profils/:name",
+        path: "/utilisateurs/:name",
         name: "UserProfile",
         component: UserProfile,
   },
