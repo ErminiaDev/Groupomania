@@ -17,9 +17,9 @@
         },
         methods: {
             //ajouter un post
-            addPost(post) {
+            async addPost(post) {
             console.log('fetching')
-              const res = fetch('http://localhost:3000/api/publications', {
+              const res = await fetch('http://localhost:3000/api/publications', {
                 method: 'POST',
                 headers: {
                   'Content-type': 'application/json',
@@ -27,7 +27,7 @@
                 body: JSON.stringify(post),
               })
               console.log('has attempted to fetch')
-              const data = res.json();
+              const data = await res.json();
               console.log('jsoned');
               this.posts = [...this.posts, data]
             },

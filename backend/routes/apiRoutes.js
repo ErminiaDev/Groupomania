@@ -27,7 +27,7 @@ router.get("/publications/:id", (req, res) => {
 router.post("/publications", (req, res) => {
     const user = db.User;
     db.Post.create({
-        user_id: user.id,
+        user_id: 3,
         title: req.body.title,
         category: req.body.category,
         text:req.body.text
