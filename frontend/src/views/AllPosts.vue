@@ -9,6 +9,7 @@
 import Posts from "../components/posts/Posts.vue"
 
 export default {
+    name:'AllPosts',
     components: {
         Posts
     },
@@ -18,42 +19,16 @@ export default {
       }
     },
     methods: {
-        currentDate() {
-          let today = new Date();
-          let date = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear() + ' à ' + today.getHours() + ':' + today.getMinutes();
-          return date;
-        }
+       //fetch all posts from the API
+      async fetchPosts() {
+        const res = await fetch('http://localhost:3000/api/publications')
+        const data = await res.json()
+        return data
       },
-    created() {
-      this.posts =[
-        {
-          id: 1,
-          userId: 346585,
-          date: this.currentDate(),
-          category: 'random',
-          title: 'Hello',
-          text: 'Lorem ipsum dolor sit amet',
-          liked: 18
-        },
-        {
-          id: 2,
-          userId: 434235,
-          date: this.currentDate(),
-          category: 'peanuts',
-          title: 'Bye',
-          text: 'Lorem ipsum dolor sit amet',
-          liked: 6
-        },
-        {
-          id: 3,
-          userId: 589258,
-          date: this.currentDate(),
-          category: 'lifestyle',
-          title: 'See you',
-          text: 'Lorem ipsum dolor sit amet',
-          liked: 3
-        },
-      ]
-    }
+    },
+    async created() {
+      this.posts = await this.fetchPosts()
+      
+    } 
 }
 </script>

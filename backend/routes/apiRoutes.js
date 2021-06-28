@@ -24,10 +24,14 @@ router.get("/publications/:id", (req, res) => {
 
 
 //post new post
-router.post("/ajouter-publication", (req, res) => {
+router.post("/publications", (req, res) => {
+    const user = db.User;
     db.Post.create({
+        user_id: user.id,
+        title: req.body.title,
+        category: req.body.category,
         text:req.body.text
-    }).then(submittedPost => res.send(submittedPost));
+    }).then(newPost => res.send(newPost));
 });
 
 //delete post

@@ -12,7 +12,7 @@
                 <h5 class="card-title"> {{ post.title }} </h5>
                 <p class="card-text"> {{ post.text }} </p>
                 <a href="#" class="btn btn-outline-info">
-                    <span>Aimé  {{ post.liked }}&nbsp;</span>
+                    <span>Aimé  18 fois</span>
                     <i class="ml-1 mr-2 far fa-heart"></i>
                 </a>
               </div>

@@ -17,6 +17,7 @@
             <NavbarButtons
                 btn_name1="S'inscrire"
                 btn_name2="Se connecter"
+                btn_name3="Se déconnecter"
             />
         </div>
     </nav>

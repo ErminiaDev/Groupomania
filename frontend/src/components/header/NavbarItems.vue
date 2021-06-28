@@ -23,7 +23,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/profils/:name">{{ navlink1 }}</router-link>
+        <router-link class="nav-link" to="/utilisateurs/:name">{{ navlink1 }}</router-link>
       </li>
     </ul>
 </template>

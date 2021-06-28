@@ -9,6 +9,7 @@ import UserDetail from "@/views/UserDetail.vue";
 import UserProfile from "@/views/UserProfile.vue";
 import AllUsers from "@/views/AllUsers.vue";
 import SignIn from "@/views/SignIn.vue";
+import SignOut from "@/views/SignOut.vue";
 import SignUp from "@/views/SignUp.vue";
 import PostDetail from "@/views/PostDetail.vue";
 
@@ -73,6 +74,11 @@ const routes = [
         name: "Connexion",
         component: SignIn,
   },
+  {
+        path: "/deconnexion",
+        name: "Déonnexion",
+        component: SignOut,
+  }
 ];
 
 const router = createRouter({
