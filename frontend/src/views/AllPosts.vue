@@ -31,7 +31,7 @@ export default {
 
           res.status === 200
             ? (this.posts = this.posts.filter((post) => post.id !== id))
-            : alert('Error deleting task')
+            : alert('Error deleting post')
         }
       },
        //fetch all posts from the API

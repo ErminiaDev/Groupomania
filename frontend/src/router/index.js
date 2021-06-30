@@ -1,8 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
 import AllPosts from "@/views/AllPosts.vue";
-import SharedPosts from "@/views/SharedPosts.vue";
-import LikedPosts from "@/views/LikedPosts.vue";
 import AddPost from "@/views/AddPost.vue";
 import DeletePost from "@/views/DeletePost.vue";
 import UserDetail from "@/views/UserDetail.vue";
@@ -28,16 +26,6 @@ const routes = [
     path: "/publications/:id",
     name:"PostDetail",
     component: PostDetail,
-  },
-  {
-      path: "/publications-partagees/:user-id",
-      name: "Publications partagées",
-      component: SharedPosts,
-  },
-  {
-      path: "/publications-aimees/:user-id",
-      name: "Publications aimées",
-      component: LikedPosts,
   },
   {
       path: "/ajouter-publication",

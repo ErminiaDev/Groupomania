@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.SMALLINT
       },
       comment: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
