@@ -15,7 +15,7 @@ module.exports = (sequelize, Datatypes) => {
         text: {
             type: Datatypes.STRING,
             allowNull: false
-        }
+        },
     });
     return Post;
 };
