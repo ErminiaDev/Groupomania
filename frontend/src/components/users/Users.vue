@@ -1,7 +1,10 @@
 <template>
     <div class="container">
         <div :key="user.id" v-for="user in users">
-            <User :user="user"/>
+            <User 
+                @delete-user="$emit('delete-user', user.id)"
+                :user="user"
+            />
         </div>
     </div>
 </template>
@@ -15,6 +18,7 @@ export default {
     },
     components: {
         User
-    }
+    },
+    emits: ['delete-user'],
 }
 </script>

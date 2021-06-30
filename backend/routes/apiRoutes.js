@@ -25,13 +25,24 @@ router.get("/publications/:id", (req, res) => {
 
 //post new post
 router.post("/publications", (req, res) => {
-    const user = db.User;
     db.post.create({
-        user_id: 3,
+        //IMPORTANTinclude user id
+        user_id: 1,
         title: req.body.title,
         category: req.body.category,
         text:req.body.text
     }).then(newPost => res.send(newPost));
+});
+
+//sign up new user
+router.post("/utilisateurs", (req, res) => {
+    db.user.create({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password:req.body.password,
+        is_admin: 0
+    }).then(newUser => res.send(newUser));
 });
 
 //delete post

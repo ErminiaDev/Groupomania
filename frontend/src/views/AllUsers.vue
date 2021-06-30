@@ -1,7 +1,10 @@
 <template>
     <div class="container">
         <h1 class="py-5">Utilisateurs</h1>
-        <Users :users="users"/>
+        <Users 
+          @delete-user="deleteUser"
+          :users="users"
+        />
     </div>
 </template>
 
@@ -9,6 +12,7 @@
 import Users from "../components/users/Users.vue"
 
 export default {
+    name:'AllUsers',
     components: {
         Users,
     },
@@ -17,27 +21,28 @@ export default {
       users: [],
     }
   },
-  created() {
-    this.users =[
-      {
-        id: 1,
-        name: 'Sarah',
-        email: 'sarah@groupomania.com',
-        password: 'sdf257@jml'
-      },
-      {
-        id: 2,
-        name: 'Louise',
-        email: 'louise@groupomania.com',
-        password: 'dn%P15ut5'
-      },
-      {
-        id: 3,
-        name: 'Arthur',
-        email: 'arthur@groupomania.com',
-        password: 'a&%lM5O97'
-      },
-    ]
+  methods: {
+    // delete a user
+    async deleteUser(id) {
+      if (confirm(`Etes vous sûr de vouloir supprimer cet utilisateur?`)) {
+        const res = await fetch(`http://localhost:3000/api/utilisateurs/${id}`, {
+          method: 'DELETE',
+        })
+
+        res.status === 200
+          ? (this.users = this.users.filter((user) => user.id !== id))
+          : alert('Error deleting user')
+      }
+    },
+     //fetch all users from the API
+    async fetchUsers() {
+      const res = await fetch('http://localhost:3000/api/utilisateurs')
+      const data = await res.json()
+      return data
+    },
+  },
+  async created() {
+    this.users = await this.fetchUsers()
   }
 }
 </script>
