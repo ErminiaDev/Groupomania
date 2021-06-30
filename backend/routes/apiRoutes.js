@@ -4,18 +4,18 @@ const db = require("../models");
 
 //get all users
 router.get("/utilisateurs", (req, res) => {
-    db.User.findAll()
+    db.user.findAll()
     .then(users => res.send(users));
 });
 
 //get all posts
 router.get("/publications", (req, res) => {
-    db.Post.findAll()
+    db.post.findAll()
     .then(posts => res.send(posts));
 });
 //get a single post
 router.get("/publications/:id", (req, res) => {
-    db.Post.findAll({
+    db.post.findAll({
         where: {
             id: req.params.id
         }
@@ -26,18 +26,17 @@ router.get("/publications/:id", (req, res) => {
 //post new post
 router.post("/publications", (req, res) => {
     const user = db.User;
-    db.Post.create({
+    db.post.create({
         user_id: 3,
         title: req.body.title,
         category: req.body.category,
-        text:req.body.text,
-        dateCreated: req.params.dateCreated
+        text:req.body.text
     }).then(newPost => res.send(newPost));
 });
 
 //delete post
 router.delete("/publications/:id", (req, res) => {
-    db.Post.destroy({
+    db.post.destroy({
         where: {
             id: req.params.id
         }
@@ -46,7 +45,7 @@ router.delete("/publications/:id", (req, res) => {
 
 //edit a post
 router.put("/edit", (req, res) => {
-    db.Post.update({
+    db.post.update({
         text: req.body.text
     }, {
         id: req.body.id

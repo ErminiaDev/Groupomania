@@ -45,9 +45,9 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
-db.sequelize.sync().then(() => {
+db.sequelize.authenticate({ force:true }).then(() => {
     app.listen(port, () => {
-        console.log(`listening on: http://localhost:${port}`);
+        console.log(`>/>/>/>/>/>/>/>/>/>/>database connected & server listening on: http://localhost:${port}<\\<\\<\\<\\<\\<\\<\\<\\<\\<`);
     });
 });
 
