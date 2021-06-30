@@ -30,17 +30,18 @@ router.post("/publications", (req, res) => {
         user_id: 3,
         title: req.body.title,
         category: req.body.category,
-        text:req.body.text
+        text:req.body.text,
+        dateCreated: req.params.dateCreated
     }).then(newPost => res.send(newPost));
 });
 
 //delete post
-router.delete("/delete/:id", (req, res) => {
+router.delete("/publications/:id", (req, res) => {
     db.Post.destroy({
         where: {
             id: req.params.id
         }
-    }).then(() => res.send("deleted!"));
+    }).then(() => res.send("supprimé!"));
 });
 
 //edit a post

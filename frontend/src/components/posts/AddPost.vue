@@ -16,11 +16,11 @@
                             <div class="col-3">
                                 <select class="custom-select mr-sm-2" v-model="category" id="inlineFormCustomSelect" required>
                                     <option selected>Choisir</option>
-                                    <option value="1">Vie au travail</option>
-                                    <option value="1">Lecture</option>
-                                    <option value="2">Bien-être</option>
-                                    <option value="3">After-work</option>
-                                    <option value="3">Activités sportives</option>
+                                    <option value="Vie au travail">Vie au travail</option>
+                                    <option value="Lecture">Lecture</option>
+                                    <option value="Bien-être">Bien-être</option>
+                                    <option value="After-work">After-work</option>
+                                    <option value="Activités sportives">Activités sportives</option>
                                   </select>
                             </div>
                         </div>

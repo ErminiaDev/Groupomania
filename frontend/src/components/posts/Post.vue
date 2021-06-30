@@ -4,16 +4,22 @@
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-sm-6 text-left "><i> {{ post.date }} </i></div>
+                  <div class="col-sm-6 text-left "><i> {{ formattedDate }} </i></div>
                   <div class="col-sm-6 text-right"> {{ post.category }} </div>
                 </div>
               </div>
               <div class="card-body">
-                <h5 class="card-title"> {{ post.title }} </h5>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <h5 class="card-title"> {{ post.title }}</h5>
+                  </div>
+                  <div class="col-4"></div>
+                </div>                
                 <p class="card-text"> {{ post.text }} </p>
-                <a href="#" class="btn btn-outline-info">
-                    <span>Aimé  18 fois</span>
-                    <i class="ml-1 mr-2 far fa-heart"></i>
+                <a href="#" @click="$emit('delete-post', post.id)" class="btn btn-secondary">
+                  Delete post
+                  <i class="ml-1 fas fa-times text-right"></i>
                 </a>
               </div>
             </div>
@@ -25,8 +31,36 @@
     export default {
         name: 'Post',
         props: {
-          post: Object
+          post: Object,
+        },
+        data: function() {
+          return {
+            formattedDate: ''
+          }
+        },
+        created: function() {
+          this.formatDate();
+        },
+        methods: {
+          formatDate: function(){
+            const currentPost = this.post;
+            const sqlDate = currentPost.createdAt.split(/[- T : .]/);
+            const formattedDate = new Date(Date.UTC(sqlDate[0], sqlDate[1]-1, sqlDate[2], sqlDate[3], sqlDate[4]))
+            console.log(formattedDate);
+            return formattedDate;
+          }
         }
+        /* data() {
+          return {
+              datetime: function () {
+              const currentPost = this.post;
+              const sqlDate = currentPost.createdAt.split(/[- T : .]/);
+              var date = new Date(Date.UTC(sqlDate[0], sqlDate[1]-1, sqlDate[2], sqlDate[3], sqlDate[4]))
+              console.log(date);
+              return date;
+            }
+          } 
+        }    */
     }
 </script>
 
@@ -35,8 +69,12 @@
     font-weight: 600;
     font-size: 1.5em;
   }
-  svg{
+  .fa-heart {
     color: red;
+  }
+
+  .fa-retweet {
+    color: green
   }
 </style>
 

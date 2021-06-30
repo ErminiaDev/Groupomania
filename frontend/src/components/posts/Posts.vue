@@ -1,7 +1,10 @@
 <template>
     <div class="container">
         <div :key="post.id" v-for="post in posts">
-            <Post :post="post"/>
+            <Post 
+                @delete-post="$emit('delete-post', post.id)"
+                :post="post"
+            />
         </div>
     </div>
 </template>
@@ -15,6 +18,7 @@ export default {
     },
     components: {
         Post
-    }
+    },
+    emits: ['delete-post'],
 }
 </script>
