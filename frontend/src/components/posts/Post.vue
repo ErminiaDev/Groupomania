@@ -18,7 +18,7 @@
                 </div>                
                 <p class="card-text"> {{ post.text }} </p>
                 <a href="#" @click="$emit('delete-post', post.id)" class="btn btn-secondary">
-                  Delete post
+                  Supprimer
                   <i class="ml-1 fas fa-times text-right"></i>
                 </a>
               </div>

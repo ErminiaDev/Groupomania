@@ -1,8 +1,9 @@
 <template>
     <div class="container">
-        <div :key="user.id" v-for="user in users">
+        <div :key="user.uuid" v-for="user in users">
             <User 
-                @delete-user="$emit('delete-user', user.id)"
+                @delete-user="$emit('delete-user', user.uuid)"
+                @modify-user="$emit('modify-user', user.uuid)"
                 :user="user"
             />
         </div>

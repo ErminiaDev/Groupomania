@@ -40,6 +40,17 @@ export default {
       const data = await res.json()
       return data
     },
+    //fetch one user from API
+    async fetchUser(id) {
+      console.log('sending fetch');
+      const res = await fetch(`http://localhost:3000/api/utilisateurs/${id}`, {
+        method: 'GET',
+      })
+      
+      const data = await res.json()
+
+      return data
+    }
   },
   async created() {
     this.users = await this.fetchUsers()
