@@ -17,8 +17,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <router-link class="dropdown-item" to="/ajouter-publication">{{ dd2_item1 }}</router-link>
           <div class="dropdown-divider"></div>
-          <router-link class="dropdown-item" to="/publications-partagees/:user-id">{{ dd2_item2 }}</router-link>
-          <router-link class="dropdown-item" to="/publications-aimees/:user-id">{{ dd2_item3 }}</router-link>
           <router-link class="dropdown-item" to="/publications">{{ dd2_item4 }}</router-link>
         </div>
       </li>
