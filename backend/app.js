@@ -19,9 +19,12 @@ app.use(cors());
 //middleware body-parser (deprecated)
 app.use(bodyParser.json());
 
-const apiRoutes = require("./routes/apiRoutes");
+const postRoutes = require("./routes/post");
+const userRoutes = require("./routes/user");
 const { sequelize } = require("./models");
-app.use("/api", apiRoutes);
+app.use("/api/publications", postRoutes);
+app.use("/api/utilisateurs", userRoutes);
+
 
 //exporter cette application pour y accéder depuis les autres fichiers notamment le serveur
 module.exports = app;
