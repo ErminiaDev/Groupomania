@@ -1,42 +1,47 @@
 const db = require('../models');
 
 exports.createPost = (req, res) => {
-    db.post.create({
-        //IMPORTANTinclude user id
-        user_id: 1,
-        title: req.body.title,
-        category: req.body.category,
-        text:req.body.text
-    }).then(newPost => res.send(newPost));
+    const post = new db.Post({
+        ...req.body,
+        userId: 1
+    });
+    post.save()
+        .then(() => res.status(201).json({ message: 'Publication enregistrée!' }))
+        .catch(error => res.status(400).json({ error }));
 };
 
 exports.updatePost = (req, res, next) => {
-    db.post.updateOne({ 
-      id: req.params.id 
+    db.Post.updateOne({ 
+      uuid: req.params.id 
       }, { 
-          ...req.body, id: req.params.id 
+          ...req.body, uuid: req.params.id 
           })
     .then(() => res.status(200).json({ message: 'Publication modifiée !'}))
     .catch(error => res.status(400).json({ error }));
 };
 
 exports.deletePost = (req, res) => {
-    db.post.destroy({
+    db.Post.destroy({
         where: {
-            id: req.params.id
+            uuid: req.params.id
         }
-    }).then(() => res.send("supprimé!"));
+    })
+    .then(() => res.status(200).json({ message:"Publication supprimée!" }))
+    .catch(error => res.status(400).json({ error }));
 };
 
 exports.findAllPosts = (req, res) => {
-    db.post.findAll()
-    .then(posts => res.send(posts));
+    db.Post.findAll()
+    .then(post => res.status(200).json(post))
+    .catch(error => res.status(400).json({ error }));
 };
 
 exports.findOnePost = (req, res) => {
-    db.post.findAll({
+    db.Post.findAll({
         where: {
-            id: req.params.id
+            uuid: req.params.id
         }
-    }).then(post => res.send(post));
+    })
+    .then(post => res.status(200).json(post))
+    .catch(error => res.status(404).json({ error }));
 };

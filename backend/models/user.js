@@ -9,10 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    /* static associate({ Post }) {
-      // define association here
-      this.hasMany(Post, { foreignKey: 'userId', as: 'posts' })
-    } */
+    
     //to make the id disappear
     toJSON(){
       return{ ...this.get(), id: undefined}
@@ -50,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     is_admin: {
       type:DataTypes.SMALLINT,
-      allowNull:false
+      defaultValue: 0
     },
   }, {
     sequelize,

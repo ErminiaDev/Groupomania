@@ -20,7 +20,7 @@ exports.signUp = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    db.user.findOne({ email: req.body.email })
+    db.User.findOne({ email: req.body.email })
         .then(user => {
             if(!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé!' })
@@ -41,28 +41,33 @@ exports.login = (req, res, next) => {
 }
 
 exports.updateUser = (req, res, next) => {
-  user.updateOne({ uuid: req.params.id }, { ...req.body, uuid: req.params.id })
+  db.User.updateOne({ uuid: req.params.id }, { ...req.body, uuid: req.params.id })
     .then(() => res.status(200).json({ message: 'Utilisateur modifié !'}))
     .catch(error => res.status(400).json({ error }));
 };
 
 exports.deleteUser = (req, res) => {
-    db.user.destroy({
+    db.User.destroy({
         where: {
             uuid: req.params.id
         }
-    }).then(() => res.send("utilisateur supprimé!"));
+    })
+    .then(() => res.status(200).json({ message: 'utilisateur supprimé!' }))
+    .catch(error => res.status(404).json({ error }))
 };
 
 exports.findAllUsers = (req, res) => {
     db.user.findAll()
-    .then(users => res.send(users));
+    .then(user => res.status(200).json(user))
+    .catch(error => res.status(400).json({ error }))
 };
 
 exports.findOneUser = (req, res) => {
-    db.user.findAll({
+    db.User.findAll({
         where: {
             uuid: req.params.id
         }
-    }).then(user => res.send(user));
+    })
+    .then(user => res.status(200).json(user))
+    .catch(error => res.status(400).json({ error }));
 };

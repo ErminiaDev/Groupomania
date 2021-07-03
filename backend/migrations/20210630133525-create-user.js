@@ -39,7 +39,7 @@ module.exports = {
       },
       is_admin: {
         type: DataTypes.SMALLINT,
-        allowNull: false
+        defaultValue: 0
       },
       createdAt: {
         allowNull: false,
