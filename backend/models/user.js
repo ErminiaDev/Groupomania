@@ -3,20 +3,22 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class user extends Model {
+  class User extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    /* static associate({ Post }) {
       // define association here
-    }
+      this.hasMany(Post, { foreignKey: 'userId', as: 'posts' })
+    } */
+    //to make the id disappear
     toJSON(){
       return{ ...this.get(), id: undefined}
     }
   };
-  user.init({
+  User.init({
     //to create a more complex user id for security (not knowing how many users exist)
     uuid: {
       type: DataTypes.UUID,
@@ -52,7 +54,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
+    tableName: 'users',
     modelName: 'user',
   });
-  return user;
+  return User;
 };

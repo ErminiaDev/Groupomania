@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 
 const db = require('../models');
 
-exports.createUser = (req, res, next) => {
+exports.signUp = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
         const user = new db.user({
@@ -18,6 +18,27 @@ exports.createUser = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
+
+exports.login = (req, res, next) => {
+    db.user.findOne({ email: req.body.email })
+        .then(user => {
+            if(!user) {
+                return res.status(401).json({ error: 'Utilisateur non trouvé!' })
+            }
+            bcrypt.compare(req.body.password, db.user.password)
+            .then( valid => {
+                if (!valid) {
+                    return res.status(401).json({ error: 'Mot de passe incorrect!' }) 
+                }
+                res.status(200).json({
+                    userId: user.uuid,
+                    token: 'TOKEN'
+                });
+            })
+            .catch(error => res.status(500).json({ error }))
+        })
+        .catch(error => res.status(500).json({ error }));
+}
 
 exports.updateUser = (req, res, next) => {
   user.updateOne({ uuid: req.params.id }, { ...req.body, uuid: req.params.id })

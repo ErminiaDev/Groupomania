@@ -12,7 +12,7 @@ router.get("/", userCtrl.findAllUsers);
 router.get("/:id", userCtrl.findOneUser)
 
 //sign up new user
-router.post("/", userCtrl.createUser);
+router.post("/", userCtrl.signUp);
 
 //delete user
 router.delete("/:id", userCtrl.deleteUser);
