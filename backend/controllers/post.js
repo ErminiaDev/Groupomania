@@ -1,9 +1,13 @@
 const db = require('../models');
 
 exports.createPost = (req, res) => {
+    //adding userUuid to the rest of destructured post body
+    const { userUuid, ...posts } = req.body
+    //following line needs testing; otherwise post creation works but without adding user uuid (no auth yet)
+    const User = db.user.findOne({ where: { uuid : userUuid }})
     const post = new db.Post({
-        ...req.body,
-        userId: 1
+        ...posts,
+        userId: User.id
     });
     post.save()
         .then(() => res.status(201).json({ message: 'Publication enregistrée!' }))
