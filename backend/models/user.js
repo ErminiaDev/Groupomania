@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     //to create a more complex user id for security (not knowing how many users exist)
     uuid: {
       type: DataTypes.UUID,
