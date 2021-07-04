@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
 
-    static associate({ Post }){
+    /* static associate({ Post }){
       this.hasMany( Post, { foreignKey : 'userId'})
-    };
+    }; */
 
     //to make the id disappear
     toJSON(){

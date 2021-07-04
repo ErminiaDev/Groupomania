@@ -35,7 +35,7 @@ exports.deletePost = (req, res) => {
 };
 
 exports.findAllPosts = (req, res) => {
-    db.Post.findAll()
+    db.Post.findAll({ include: [db.user] })
     .then(post => res.status(200).json(post))
     .catch(error => res.status(400).json({ error }));
 };
