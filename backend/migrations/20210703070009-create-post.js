@@ -24,6 +24,14 @@ module.exports = {
         type:DataTypes.TEXT,
         allowNull:false 
       },
+      userId: {
+         type: DataTypes.INTEGER,
+         references: {
+            model: 'users', // 'users' refers to table name
+            key: 'id', // 'id' refers to column name in users table
+         },
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
