@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 
 const postRoutes = require("./routes/post");
 const userRoutes = require("./routes/user");
-const { sequelize } = require("./models");
 app.use("/api/publications", postRoutes);
 app.use("/api/utilisateurs", userRoutes);
 

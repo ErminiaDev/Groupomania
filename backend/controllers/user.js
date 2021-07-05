@@ -5,7 +5,7 @@ const db = require('../models');
 exports.signUp = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
-        const user = new db.user({
+        const user = new db.User({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
@@ -25,7 +25,7 @@ exports.login = (req, res, next) => {
             if(!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé!' })
             }
-            bcrypt.compare(req.body.password, db.user.password)
+            bcrypt.compare(req.body.password, db.User.password)
             .then( valid => {
                 if (!valid) {
                     return res.status(401).json({ error: 'Mot de passe incorrect!' }) 
@@ -57,7 +57,7 @@ exports.deleteUser = (req, res) => {
 };
 
 exports.findAllUsers = (req, res) => {
-    db.user.findAll()
+    db.User.findAll()
     .then(user => res.status(200).json(user))
     .catch(error => res.status(400).json({ error }))
 };

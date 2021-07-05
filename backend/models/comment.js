@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Post extends Model {
+  class Comment extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,49 +13,45 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo( User, { foreignKey : 'userId'} )
     };
 
-    static associate({ Comment }){
-      this.hasMany( Comment, { foreignKey : 'postId'} )
+    static associate({ Post }){
+      this.belongsTo( Post, { foreignKey : 'postId'} )
     };
 
     toJSON() {
-      return { ...this.get(), id: undefined, userId: undefined }
+      return { ...this.get(), id: undefined, userId: undefined, postId: undefined }
     }
 
   };
-  Post.init({
+  Comment.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
-    uuid: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
-    },
-    title: {
-      type:DataTypes.STRING,
-      allowNull:false 
-    },
-    category: {
-      type: DataTypes.STRING,
-      allowNull:false
-    },
     text: {
-      type:DataTypes.TEXT,
-      allowNull:false 
+      type: DataTypes.STRING,
+      allowNull: false
     },
     userId: {
        type: DataTypes.INTEGER,
        references: {
-          model: 'Users', // 'users' refers to table name
+          model: 'Users', // 'Users' refers to table name
           key: 'id', // 'id' refers to column name in users table
+       },
+       allowNull: false,
+    },
+    postId: {
+       type: DataTypes.INTEGER,
+       references: {
+          model: 'Posts', // 'Posts' refers to table name
+          key: 'id', // 'id' refers to column name in posts table
        },
        allowNull: false,
     }
   }, {
     sequelize,
-    modelName: 'Post',
+    modelName: 'Comment',
   });
-  return Post;
+  return Comment;
 };

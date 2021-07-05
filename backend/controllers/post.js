@@ -4,10 +4,11 @@ exports.createPost = (req, res) => {
     //adding userUuid to the rest of destructured post body
     const { userUuid, ...posts } = req.body
     //following line needs testing; otherwise post creation works but without adding user uuid (no auth yet)
-    const User = db.user.findOne({ where: { uuid : userUuid }})
+    const User = db.User.findOne({ where: { uuid : userUuid }})
+    console.log(User);
     const post = new db.Post({
         ...posts,
-        userId: User.id
+        userId: 1
     });
     post.save()
         .then(() => res.status(201).json({ message: 'Publication enregistrée!' }))
@@ -35,9 +36,11 @@ exports.deletePost = (req, res) => {
 };
 
 exports.findAllPosts = (req, res) => {
-    db.Post.findAll({ include: [db.user] })
+    db.Post.findAll(
+        /* { include: [db.User] } */
+        )
     .then(post => res.status(200).json(post))
-    .catch(error => res.status(400).json({ error }));
+    .catch(error => res.status(400).json({ error: error.toString() }));
 };
 
 exports.findOnePost = (req, res) => {

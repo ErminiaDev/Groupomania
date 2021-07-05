@@ -1,12 +1,12 @@
 'use strict';
 module.exports = {
-  up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('posts', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('Posts', {
       id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER,
+        primaryKey: true
       },
       uuid: {
         type: DataTypes.UUID,
@@ -27,22 +27,22 @@ module.exports = {
       userId: {
          type: DataTypes.INTEGER,
          references: {
-            model: 'users', // 'users' refers to table name
+            model: 'Users', // 'users' refers to table name
             key: 'id', // 'id' refers to column name in users table
          },
-        allowNull: false
+         allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE,
-      },
+        type: Sequelize.DATE
+      }
     });
   },
-  down: async (queryInterface, DataTypes) => {
-    await queryInterface.dropTable('posts');
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('Posts');
   }
 };

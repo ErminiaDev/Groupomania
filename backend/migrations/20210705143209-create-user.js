@@ -1,29 +1,28 @@
 'use strict';
 module.exports = {
-  //when running the migration it executes it with up
-  up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('users', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('Users', {
       id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER
+        primaryKey: true
       },
-      uuid: {
+      uuid: { //to create a more complex user id for security (not knowing how many users exist)
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4
       },
       first_name: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type:DataTypes.STRING,
+        allowNull:false
       },
       last_name: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type:DataTypes.STRING,
+        allowNull:false
       },
       email: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type:DataTypes.STRING,
+        allowNull:false,
         //pour vérifier que le mail soit unique
         validate: {
           isEmail:true
@@ -38,21 +37,20 @@ module.exports = {
         allowNull:false
       },
       is_admin: {
-        type: DataTypes.SMALLINT,
+        type:DataTypes.SMALLINT,
         defaultValue: 0
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: Sequelize.DATE
       }
     });
   },
-  //the migration can be undone with down
-  down: async (queryInterface, DataTypes) => {
-    await queryInterface.dropTable('users');
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('Users');
   }
 };

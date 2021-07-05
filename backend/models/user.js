@@ -9,15 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    static associate({ Post }){
+      this.hasMany( Post, { foreignKey : 'userId'} )
+    };
 
-    /* static associate({ Post }){
-      this.hasMany( Post, { foreignKey : 'userId'})
-    }; */
+    static associate({ Comment }){
+      this.hasMany( Comment, { foreignKey : 'userId'} )
+    };
 
-    //to make the id disappear
-    toJSON(){
-      return{ ...this.get(), id: undefined}
+    toJSON() {
+      return { ...this.get(), id: undefined }
     }
+
   };
   User.init({
     id: {
@@ -26,8 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    //to create a more complex user id for security (not knowing how many users exist)
-    uuid: {
+    uuid: { //to create a more complex user id for security (not knowing how many users exist)
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
@@ -61,8 +63,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    tableName: 'users',
-    modelName: 'user',
+    modelName: 'User',
   });
   return User;
 };
