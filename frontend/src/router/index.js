@@ -1,11 +1,10 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
-import AllPosts from "@/views/AllPosts.vue";
-import AddPost from "@/views/AddPost.vue";
-import AllUsers from "@/views/AllUsers.vue";
-import SignIn from "@/views/SignIn.vue";
-import SignOut from "@/views/SignOut.vue";
-import SignUp from "@/views/SignUp.vue";
+import Dashboard from "@/views/Dashboard.vue";
+import Posts from "@/views/Posts.vue";
+import Users from "@/views/Users.vue";
+import Login from "@/views/Login.vue";
+
 
 const routes = [
   {
@@ -14,35 +13,30 @@ const routes = [
     component: Home,
   },
   {
-    path: "/publications",
-    name: "Publications",
-    component: AllPosts,
+    path: "/tableau-de-bord",
+    name: 'dashboard',
+    component: Dashboard
   },
   {
-      path: "/ajouter-publication",
-      name: "Ajouter une publication",
-      component: AddPost,
+    path: "/publications",
+    name: "Publications",
+    component: Posts,
   },
   {
         path: "/utilisateurs",
         name: "AllUsers",
-        component: AllUsers,
+        component: Users,
   },
   {
         path: "/inscription",
         name: "Inscription",
-        component: SignUp,
+        component: Login,
   },
   {
         path: "/connexion",
         name: "Connexion",
-        component: SignIn,
+        component: Login,
   },
-  {
-        path: "/deconnexion",
-        name: "Déonnexion",
-        component: SignOut,
-  }
 ];
 
 const router = createRouter({
