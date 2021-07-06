@@ -12,19 +12,19 @@ const authAdmin = require('../middlewares/authAdmin');
 
 //get all users
 //router.get("/", authAdmin, userCtrl.findAllUsers);
-router.get("/", userCtrl.findAllUsers);
+router.get("/",  userCtrl.findAllUsers);
 
 //get a single user
-router.get("/:id", userCtrl.findOneUser);
+router.get("/:id",  userCtrl.findOneUser);
 
 //sign up new user
-router.post("/", userCtrl.signUp);
+router.post("/signup", userCtrl.signUp);
 
 //login
-router.post("/", userCtrl.login);
+router.post("/login", userCtrl.login);
 
 //delete user
-router.delete("/:id", authAdmin, userCtrl.deleteUser);
+router.delete("/:id", userCtrl.deleteUser);
 
 //edit a user
 //router.put('/:id', auth, userCtrl.updateUser);

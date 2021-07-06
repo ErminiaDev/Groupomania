@@ -22,7 +22,11 @@ exports.signUp = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    db.User.findOne({ email: req.body.email })
+    db.User.findOne({ 
+        where: {
+            email: req.body.email
+        }
+     })
         .then(user => {
             if(!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé!' })
@@ -42,9 +46,9 @@ exports.login = (req, res, next) => {
                     )
                 });
             })
-            .catch(error => res.status(500).json({ error }))
+            .catch(error => res.status(500).json({ error: error.toString() }))
         })
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(500).json({ error: error.toString() }));
 }
 
 exports.updateUser = (req, res, next) => {

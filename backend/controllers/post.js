@@ -37,8 +37,8 @@ exports.deletePost = (req, res) => {
 
 exports.findAllPosts = (req, res) => {
     db.Post.findAll(
-        /* { include: [db.User] } */
-        )
+/*         { include: db.User }
+ */        )
     .then(post => res.status(200).json(post))
     .catch(error => res.status(400).json({ error: error.toString() }));
 };
