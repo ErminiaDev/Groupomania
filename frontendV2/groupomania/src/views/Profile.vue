@@ -2,24 +2,24 @@
   <div class="container">
     <header class="jumbotron">
       <h3>
-        Profile de <strong>{{currentUser.firstname}} {{currentUser.lastname}}</strong> 
+        Profil de <strong>{{currentUser.first_name}} {{currentUser.last_name}}</strong> 
       </h3>
     </header>
     <p>
       <strong>Token:</strong>
-      {{currentUser.accessToken.substring(0, 20)}} ... {{currentUser.accessToken.substr(currentUser.accessToken.length - 20)}}
+      {{currentUser.token.substring(0, 20)}} ... {{currentUser.token.substr(currentUser.token.length - 20)}}
     </p>
     <p>
-      <strong>Id:</strong>
+      <strong>Identifiant unique:</strong>
       {{currentUser.uuid}}
     </p>
     <p>
       <strong>Email:</strong>
       {{currentUser.email}}
     </p>
-    <strong>Authorities:</strong>
+    <strong>Droits:</strong>
     <ul>
-      <li v-for="(role,index) in currentUser.is_admin" :key="index">{{role}}</li>
+      <li >{{displayRole}}</li>
     </ul>
   </div>
 </template>
@@ -28,11 +28,21 @@
 export default {
       name: 'Profile',
   computed: {
+        //gets current user from vuex store and shows information
         currentUser() {
           return this.$store.state.auth.user;
-    }
+        },
+        displayRole() {
+          if (this.currentUser.role === 0) {
+            return 'Utilisateur';
+          } else {
+            return 'Administrateur';
+          }
+        }
+
   },
   mounted() {
+        //if no user logged in, directs to login page
         if (!this.currentUser) {
           this.$router.push('/login');
     }

@@ -13,9 +13,11 @@
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "@popperjs/core": "^2.9.2",
     "axios": "^0.21.1",
+    "vee-validate": "^4.4.6",
     "vue": "^3.0.0",
     "vue-router": "^4.0.10",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@vue/cli-plugin-eslint": "~4.5.0",

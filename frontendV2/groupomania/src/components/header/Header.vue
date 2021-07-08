@@ -6,7 +6,7 @@
             <NavbarItems
                 navlink1=  "Utilisateurs"
                 navlink2=  "Publications"
-                navlink3=  "Tableau de bord"
+                navlink3=  "Profile"
             />
             <NavbarButtons
                 btn_name1="S'inscrire"

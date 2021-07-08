@@ -17,5 +17,5 @@ import {
 
 library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt);
 
-createApp(App).use(router, store).component("font-awesome-icon", FontAwesomeIcon).mount('#app');
+createApp(App).use(router).use(store).component("font-awesome-icon", FontAwesomeIcon).mount('#app');
 

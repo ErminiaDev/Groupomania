@@ -3,8 +3,8 @@ import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import SignUp from './views/SignUp.vue';
 import Profile from './views/Profile.vue';
-import BoardAdmin from './views/BoardAdmin.vue';
-import BoardUser from './views/BoardUser.vue';
+import Posts from './views/Posts.vue';
+import Users from './views/Users.vue';
 
 const routes = [
     {
@@ -17,11 +17,13 @@ const routes = [
       component: Home
     },
     {
-      path: '/login',
+      path: '/connexion',
+      name:'Connexion',
       component: Login
     },
     {
       path: '/inscription',
+      name: 'Inscription',
       component: SignUp
     },
     {
@@ -31,16 +33,14 @@ const routes = [
       // lazy-loaded??
     },
     {
-      path: '/admin',
-      name: 'admin',
-      component: BoardAdmin
-      // lazy-loaded
+      path: '/publications',
+      name: 'publications',
+      component: Posts
     },
     {
-      path: '/user',
-      name: 'user',
-      component: BoardUser
-      // lazy-loaded
+      path: '/utilisateurs',
+      name: 'utilisateurs',
+      component: Users
     }
   ];
 

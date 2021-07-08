@@ -1,63 +1,115 @@
 <template>
-    <div>
-        <UserForm
-        message = {{ errorMessage }} 
-        />
+    <div class="container">
+        <h1 class="py-5"> Se Connecter</h1>
+        <!-- <h1 class="py-5">Se Connecter</h1> -->
+        <div class="row pb-5">
+            <div class="col-5 mx-auto">
+                <div class=" bg-primary card border-secondary text-light  my-3 p-4">
+                  <Form v-slot="{values}" @submit="handleLogin" :validation-schema="schema">
+
+                        <div class="form-group pb-4 lead">
+                          <label for="email">Adresse email</label>
+                          <Field name="email" type="text" class="form-control" />
+                          <ErrorMessage name="email" class="error-feedback" />
+                          <!-- <input type="email" v-model="user.email"  class="form-control" id="email" name="email" required> -->
+                        </div>
+                        <!-- <div v-if="submitted && errors.has('email')" class="alert-danger">
+                            {{errors.first('email')}}
+                        </div>
+                        <div v-else-if="errors.has('email')" class="alert alert-danger" role="alert">
+                            Un email est requis!
+                        </div> -->
+                        
+
+                        <div class="form-group pb-4 lead">
+                          <label for="mot-de-passe">Mot de passe</label>
+                          <Field name="password" type="password" class="form-control" aria-describedby="passwordHelp"/>
+                          <ErrorMessage name="password" class="error-feedback" />
+                          <!-- <input type="password" v-model="user.password" class="form-control" id="mot-de-passe" name="password" aria-describedby="passwordHelp" required> -->
+                          <small id="passwordHelp" class="form-text">Nous ne partagerons jamais votre mot de passe.</small>
+                        </div>
+                        <!-- <div v-if="submitted && errors.has('password')" class="alert-danger">
+                            {{errors.first('password')}}
+                        </div>
+                        <div v-else-if="errors.has('password')" class="alert alert-danger" role="alert">
+                            Un mot de passe est requis!
+                        </div> -->
+
+                         <div class="form-group">
+                          <button type="submit" class="btn btn-light" :disabled="loading">
+                            <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                            <span>Se connecter</span>
+                          </button>
+                        </div>
+                        <!-- <div class="form-group">
+                          <button type="submit" class="btn btn-light" :disabled="loading">
+                              <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                              <span>{{ htmlSignUp }}</span>
+                            </button>  
+                        </div> -->
+                        <pre>{{ values }}</pre>
+                        <div class="form-group">
+                          <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
+                        </div>
+                    </Form>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
-
 <script>
-import User from '../models/user';
-import UserForm from '../components/UserForm';
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 
 export default {
-  name: 'Login',
-  components: {
-    UserForm
-  },
-  data() {
-    return {
-      user: new User('', ''),
-      loading: false,
-      message: ''
-    };
-  },
-  computed: {
-    loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
-    }
-  },
-  created() {
-    if (this.loggedIn) {
-      this.$router.push('/profile');
-    }
-  },
-  methods: {
-    handleLogin() {
-      this.loading = true;
-      this.$validator.validateAll().then(isValid => {
-        if (!isValid) {
-          this.loading = false;
-          return;
-        }
-
-        if (this.user.username && this.user.password) {
-          this.$store.dispatch('auth/login', this.user).then(
-            () => {
-              this.$router.push('/profile');
-            },
-            error => {
-              this.loading = false;
-              this.message =
-                (error.response && error.response.data) ||
-                error.message ||
-                error.toString();
-            }
-          );
-        }
+    components: {
+      Form,
+      Field,
+      ErrorMessage,
+    },
+    data() {
+      const schema = yup.object().shape({
+        email: yup.string().required("Email is required!"),
+        password: yup.string().required("Password is required!"),
       });
+
+      return {
+        loading: false,
+        message: "",
+        schema,
+      };
+    },
+    computed: {
+      loggedIn() {
+        return this.$store.state.auth.status.loggedIn;
+      },
+    },
+    created() {
+    if (this.loggedIn) {
+      this.$router.push("/profile");
+      }
+    },
+    methods: {
+      handleLogin(values) {
+        this.loading = true;
+        console.log('handling login')
+        this.$store.dispatch("auth/login", values).then(
+          () => {
+            this.$router.push("/profile");
+          },
+          (error) => {
+            this.loading = false;
+            this.message =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+          }
+        );
+      },
     }
-  }
-};
+}
+
 </script>

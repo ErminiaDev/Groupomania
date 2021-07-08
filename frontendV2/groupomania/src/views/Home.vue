@@ -1,14 +1,18 @@
 <template>
   <div class="container">
     <header class="jumbotron">
-      <h3>{{content}}</h3>
+      <h1>Accueil</h1>
     </header>
+    <div class="py-5">
+      <p>Bienvenue sur le réseau social de l'entreprise Groupomania!</p>
+      <p>Tous les salariés de l'entreprise peuvent s'inscrire et partager du contenu sous forme de publications.</p>
+    </div>
   </div>
 </template>
 
 <script>
-import UserService from '../services/user.service';
-
+/* import UserService from '../services/user.service';
+ */
 export default {
   name: 'Home',
   data() {
@@ -16,7 +20,7 @@ export default {
       content: ''
     };
   },
-  mounted() {
+  /* mounted() {
     UserService.getPublicContent().then(
       response => {
         this.content = response.data;
@@ -28,6 +32,12 @@ export default {
           error.toString();
       }
     );
-  }
+  } */
 };
 </script>
+
+<style scoped>
+p {
+  font-size: 1.5em;
+}
+</style>
