@@ -31,24 +31,30 @@ exports.login = (req, res, next) => {
             if(!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé!' })
             }
-            bcrypt.compare(req.body.password, db.User.password)
+            console.log(req.body.password);
+            console.log(user.password);
+            bcrypt.compare(req.body.password, user.password)
             .then( valid => {
                 if (!valid) {
                     return res.status(401).json({ error: 'Mot de passe incorrect!' }) 
                 }
                 res.status(200).json({
-                    userId: user.uuid,
+                    uuid: user.uuid,
                     token: jwt.sign(
                         //payload
                         { userId: user.uuid },
                         'RANDOM_TOKEN_SECRET',
                         { expiresIn:'24h' }
-                    )
+                    ),
+                    email: user.email,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    role: user.is_admin
                 });
             })
-            .catch(error => res.status(500).json({ error: error.toString() }))
+            .catch(error => res.status(500).json({ error: 2 + error.toString() }))
         })
-        .catch(error => res.status(500).json({ error: error.toString() }));
+        .catch(error => res.status(500).json({ error: 1 + error.toString() }));
 }
 
 exports.updateUser = (req, res, next) => {

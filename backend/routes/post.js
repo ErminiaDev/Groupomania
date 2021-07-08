@@ -11,7 +11,7 @@ const authAdmin = require('../middlewares/authAdmin');
 
 //get all posts
 //router.get("/", auth, postCtrl.findAllPosts);
-router.get("/", postCtrl.findAllPosts);
+router.get("/", auth, postCtrl.findAllPosts);
 
 //get a single post
 //router.get("/:id", auth, postCtrl.findOnePost)

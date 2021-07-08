@@ -12,7 +12,7 @@ const authAdmin = require('../middlewares/authAdmin');
 
 //get all users
 //router.get("/", authAdmin, userCtrl.findAllUsers);
-router.get("/",  userCtrl.findAllUsers);
+router.get("/", userCtrl.findAllUsers);
 
 //get a single user
 router.get("/:id",  userCtrl.findOneUser);
