@@ -10,9 +10,10 @@ exports.createPost = (req, res) => {
         ...posts,
         userId: 1
     });
+    console.log(post);
     post.save()
         .then(() => res.status(201).json({ message: 'Publication enregistrée!' }))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(400).json({ error: error.toString() }));
 };
 
 exports.updatePost = (req, res, next) => {

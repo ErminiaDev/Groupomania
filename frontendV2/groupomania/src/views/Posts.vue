@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1 class="py-5">Publications</h1>
-        <AddPost @add-post="addPost"/>
+        <AddPost @add-post="newPost"/>
         <Posts 
           @delete-post="deletePost"
           :posts="posts"
@@ -48,19 +48,15 @@ export default {
     }, */
     methods: {
       //ajouter un post
-      async addPost(post) {
-      console.log('fetching')
-        const res = await fetch('http://localhost:3000/api/publications', {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(post),
-        })
-        console.log('has attempted to fetch')
-        const data = await res.json();
-        console.log('jsoned');
-        this.posts = [...this.posts, data]
+      async newPost(newPost) {
+        try { 
+          console.log(newPost)
+          postService.addPost(newPost)
+          this.$router.go();
+          //display a message saying post is published
+        } catch (error) {
+          error.toString()
+        }
       },
       // delete a post
       async deletePost(id) {
