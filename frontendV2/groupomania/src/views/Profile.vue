@@ -1,26 +1,29 @@
 <template>
-  <div class="container">
-    <header class="jumbotron">
-      <h3>
-        Profil de <strong>{{currentUser.first_name}} {{currentUser.last_name}}</strong> 
-      </h3>
-    </header>
-    <p>
-      <strong>Token:</strong>
-      {{currentUser.token.substring(0, 20)}} ... {{currentUser.token.substr(currentUser.token.length - 20)}}
-    </p>
-    <p>
-      <strong>Identifiant unique:</strong>
-      {{currentUser.uuid}}
-    </p>
-    <p>
-      <strong>Email:</strong>
-      {{currentUser.email}}
-    </p>
-    <strong>Droits:</strong>
-    <ul>
-      <li >{{displayRole}}</li>
-    </ul>
+  <div class="container pb-5">
+    <div v-if=loggedIn>
+      <header class="jumbotron">
+        <h3>
+          Profil de <strong>{{currentUser.first_name}} {{currentUser.last_name}}</strong> 
+        </h3>
+      </header>
+      <p>
+        <strong>Token:</strong>
+        {{currentUser.token.substring(0, 20)}} ... {{currentUser.token.substr(currentUser.token.length - 20)}}
+      </p>
+      <p>
+        <strong>Identifiant unique:</strong>
+        {{currentUser.uuid}}
+      </p>
+      <p>
+        <strong>Email:</strong>
+        {{currentUser.email}}
+      </p>
+      <strong>Droits:</strong>
+      {{displayRole}}
+    </div>
+    <!-- <div v-else>
+      <p> Veuillez vous connecter pour avoir accès à cette page! </p>
+    </div> -->
   </div>
 </template>
 
@@ -38,13 +41,16 @@ export default {
           } else {
             return 'Administrateur';
           }
+        },
+        loggedIn() {
+          return this.$store.state.auth.status.loggedIn;
         }
 
   },
   mounted() {
         //if no user logged in, directs to login page
-        if (!this.currentUser) {
-          this.$router.push('/login');
+        if (!this.loggedIn) {
+          this.$router.push('/connexion');
     }
   }
 };

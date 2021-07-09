@@ -28,11 +28,12 @@ export default {
         posts: [],
       }
     },
-    mounted() {
+    /* mounted() {
       postService.getAllPosts().then(
         (response) => {
-          console.log('response');
-          this.content = response.data;
+          this.posts = response;
+          console.log(posts)
+          this.posts = response.data;
         },
         (error) => {
           console.log('error');
@@ -44,7 +45,7 @@ export default {
             error.toString();
         }
       );
-    },
+    }, */
     methods: {
       //ajouter un post
       async addPost(post) {
@@ -80,9 +81,12 @@ export default {
         return data
       }, */
     },
-    /* async created() {
-      this.posts = await this.fetchPosts()
-      
-    }  */
+    async created() {
+      try {
+        this.posts = await postService.getAllPosts() 
+      } catch (error) {
+        error.toString()
+      }
+    } 
 }
 </script>

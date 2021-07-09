@@ -5,7 +5,7 @@ import authHeader from './auth-header';
 
 class PostService {
 
-  getAllPosts() {
+  /* getAllPosts() {
       console.log('getting all posts')
       const requestOptions = {
           method: 'GET',
@@ -13,6 +13,17 @@ class PostService {
       };
 
       return fetch(`http://localhost:3000/api/publications`, requestOptions);
+  } */
+
+  async getAllPosts() {
+      console.log('getting all posts')
+      const res = await fetch(`http://localhost:3000/api/publications`, {
+        method: 'GET',
+        headers: authHeader()
+      })
+      const posts = await res.json()
+      return posts       
+      
   }
 
 }
