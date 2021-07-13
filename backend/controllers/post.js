@@ -29,11 +29,11 @@ exports.updatePost = (req, res, next) => {
 exports.deletePost = (req, res) => {
     db.Post.destroy({
         where: {
-            uuid: req.params.id
+            uuid: req.params.uuid
         }
     })
     .then(() => res.status(200).json({ message:"Publication supprimée!" }))
-    .catch(error => res.status(400).json({ error }));
+    .catch(error => res.status(400).json({ error: error.toString() }));
 };
 
 exports.findAllPosts = (req, res) => {
@@ -47,9 +47,9 @@ exports.findAllPosts = (req, res) => {
 exports.findOnePost = (req, res) => {
     db.Post.findAll({
         where: {
-            uuid: req.params.id
+            uuid: req.params.uuid
         }
     })
     .then(post => res.status(200).json(post))
-    .catch(error => res.status(404).json({ error }));
+    .catch(error => res.status(404).json({ error: error.toString() }));
 };

@@ -13,12 +13,13 @@
 import Posts from "../components/posts/Posts.vue"
 import AddPost from '../components/posts/AddPost'
 import postService from '../services/post.service';
-
+/* import authHeader from '../services/auth-header';
+ */
 /* import PostService from '../services/post.service';
  */
 
 export default {
-    name:'AllPosts',
+    name:'PostsPage',
     components: {
         Posts,
         AddPost
@@ -52,22 +53,19 @@ export default {
         try { 
           console.log(newPost)
           postService.addPost(newPost)
-          this.$router.go();
+          /* this.$router.go(); */
           //display a message saying post is published
         } catch (error) {
           error.toString()
         }
       },
       // delete a post
-      async deletePost(id) {
-        if (confirm(`Etes vous sûr de vouloir supprimer ce post?`)) {
-          const res = await fetch(`http://localhost:3000/api/publications/${id}`, {
-            method: 'DELETE',
-          })
-
-          res.status === 200
-            ? (this.posts = this.posts.filter((post) => post.id !== id))
-            : alert('Error deleting post')
+      async deletePost(uuid) {
+        try {
+          postService.destroyPost(uuid)
+          this.posts = this.posts.filter((post) => post.uuid !== uuid)
+        } catch (error) {
+          error.toString()
         }
       },
        /* //fetch all posts from the API

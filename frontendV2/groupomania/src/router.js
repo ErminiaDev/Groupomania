@@ -3,8 +3,8 @@ import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import SignUp from './views/SignUp.vue';
 import Profile from './views/Profile.vue';
-import Posts from './views/Posts.vue';
-import Users from './views/Users.vue';
+import PostsPage from './views/PostsPage.vue';
+import UsersPage from './views/UsersPage.vue';
 
 const routes = [
     {
@@ -35,12 +35,12 @@ const routes = [
     {
       path: '/publications',
       name: 'publications',
-      component: Posts
+      component: PostsPage
     },
     {
       path: '/utilisateurs',
       name: 'utilisateurs',
-      component: Users
+      component: UsersPage
     }
   ];
 

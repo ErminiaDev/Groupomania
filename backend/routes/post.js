@@ -15,7 +15,7 @@ router.get("/", auth, postCtrl.findAllPosts);
 
 //get a single post
 //router.get("/:id", auth, postCtrl.findOnePost)
-router.get("/:id", postCtrl.findOnePost)
+router.get("/:uuid", postCtrl.findOnePost)
 
 //post new post
 //router.post("/", auth, postCtrl.createPost);
@@ -23,10 +23,10 @@ router.post("/", postCtrl.createPost);
 
 //delete post
 //router.delete("/:id", authAdmin, postCtrl.deletePost);
-router.delete("/:id", postCtrl.deletePost);
+router.delete("/:uuid", postCtrl.deletePost);
 
 //edit a post
 //router.put('/:id', auth, postCtrl.updatePost);
-router.put('/:id', postCtrl.updatePost);
+router.put('/:uuid', postCtrl.updatePost);
 
 module.exports = router;

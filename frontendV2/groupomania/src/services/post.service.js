@@ -23,24 +23,31 @@ class PostService {
       })
       const posts = await res.json()
       return posts       
-      
   }
 
-  async addPost(newPost) {
-  console.log('fetching')
-  console.log(JSON.stringify(newPost))
-    const res = await fetch('http://localhost:3000/api/publications', {
+  async addPost(newPost) { 
+  const res = await fetch('http://localhost:3000/api/publications', {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json', 
-        'X-Custom-Header' : 'authHeader()'
+        'Authorization' : authHeader(),
+        'Content-type' : 'application/json'
         },
       body: JSON.stringify(newPost),
     })
-    console.log('has attempted to fetch')
+    /* console.log('has attempted to fetch') */
     const data = await res.json();
-    console.log('jsoned');
+    /* console.log('jsoned'); */
     this.posts = [...this.posts, data]
+  }
+
+  async destroyPost(uuid) {
+    console.log(uuid)
+    if (confirm(`Etes vous sûr de vouloir supprimer ce post?`)) {
+      await fetch(`http://localhost:3000/api/publications/${uuid}`, {
+        method: 'DELETE',
+        headers: authHeader()
+      })
+    }
   }
 
 }

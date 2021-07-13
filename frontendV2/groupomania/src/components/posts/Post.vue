@@ -13,6 +13,7 @@
                   <div class="col-4"></div>
                   <div class="col-4">
                     <h5 class="card-title"> {{ post.title }}</h5>
+                    <p class="lead"> {{ post.uuid }}</p>
                   </div>
                   <div class="col-4"></div>
                 </div>                

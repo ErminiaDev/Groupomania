@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-        <div :key="post.id" v-for="post in posts">
+        <div :key="post.uuid" v-for="post in posts">
             <Post 
-                @delete-post="$emit('delete-post', post.id)"
+                @delete-post="$emit('delete-post', post.uuid)"
                 :post="post"
             />
         </div>

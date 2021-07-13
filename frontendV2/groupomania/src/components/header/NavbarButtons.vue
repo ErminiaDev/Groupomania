@@ -14,8 +14,13 @@
             btn_name2: String,
             btn_name3: String
         },
+        //pour détecter quand l'onglet ou la fenêtre se ferme, et déconnecter l'utilisateur systématiquement
+        /* created() {
+            window.addEventListener('beforeunload', this.logOut)
+        }, */
         methods: {
             logOut() {
+                //supprimer les données dans le store et redirigé vers la connexion
               this.$store.dispatch('auth/logout');
               this.$router.push('/connexion');
             }
