@@ -7,14 +7,14 @@ import authHeader from './auth-header';
 
 class UserService {
 
-    getAllUsers() {
+ async getAllUsers() {
         console.log('getting all users')
-        const requestOptions = {
+        const res = await fetch(`http://localhost:3000/api/utilisateurs`, {
             method: 'GET',
             headers: authHeader()
-        };
-
-        return fetch(`http://localhost:3000/api/utilisateurs/auth`, requestOptions);
+          })
+          const users = await res.json()
+          return users 
     }
   
 }

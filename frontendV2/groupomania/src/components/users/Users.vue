@@ -2,8 +2,6 @@
     <div class="container">
         <div :key="user.uuid" v-for="user in users">
             <User 
-                @delete-user="$emit('delete-user', user.uuid)"
-                @modify-user="$emit('modify-user', user.uuid)"
                 :user="user"
             />
         </div>
@@ -20,6 +18,5 @@ export default {
     components: {
         User
     },
-    emits: ['delete-user'],
 }
 </script>

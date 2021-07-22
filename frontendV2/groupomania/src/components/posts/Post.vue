@@ -4,53 +4,82 @@
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-sm-6 text-left "><i> {{ formattedDate }} </i></div>
+                  <div class="col-sm-6 text-left "><i> {{ postDate }} </i></div>
                   <div class="col-sm-6 text-right"> {{ post.category }} </div>
                 </div>
               </div>
               <div class="card-body">
                 <div class="row">
-                  <div class="col-4"></div>
-                  <div class="col-4">
-                    <h5 class="card-title"> {{ post.title }}</h5>
-                    <p class="lead"> {{ post.uuid }}</p>
+                  <div class="col-12 text-left">
+                    <h3 class="card-title text-left"> {{ post.title }}</h3>
+                    <!-- <p class="lead"> {{ post.uuid }}</p> -->
                   </div>
-                  <div class="col-4"></div>
                 </div>                
-                <p class="card-text"> {{ post.text }} </p>
-                <a href="#" @click="$emit('delete-post', post.id)" class="btn btn-secondary">
-                  Supprimer
-                  <i class="ml-1 fas fa-times text-right"></i>
-                </a>
+                <p class="card-text pb-3 text-left"> {{ post.text }} </p>
+                <div class="row">
+                  <div class="col-6 text-left">
+                    <a href="#" @click="$emit('delete-post', post.id)" class="btn btn-secondary">
+                    Supprimer
+                    <i class="ml-1 fas fa-times text-right"></i>
+                    </a>
+                  </div>
+                  <div class="col-6 text-right">
+                    <a href="#" class="mr-2 btn btn-outline-primary">
+                        <i class="far fa-comment-alt"></i> 
+                        Commenter
+                    </a>
+                    <a href="#collapseComments" data-toggle="collapse" class="ml-2 btn btn-outline-success" role="button" aria-expanded="false" aria-controls="collapseComments">
+                        <i class="far fa-comments"></i>
+                        Voir les commentaires
+                    </a>
+                  </div>
+                </div>
+                
+                
               </div>
+              <Comments :comments="comments"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import Comments from "../comments/Comments"
     export default {
         name: 'Post',
+        components: {
+          Comments,
+        },
         props: {
           post: Object,
         },
-        data: function() {
+        data() {
           return {
-            formattedDate: ''
+            comments: [
+              {
+                text: 'Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow\'s nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.',
+                author: 'Sandra Dee'
+              },
+              {
+                text: 'Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.',
+                author: 'Fatboy Slim'
+              }
+            ],
           }
         },
-        created: function() {
-          this.formatDate();
-        },
-        methods: {
-          formatDate: function(){
+        computed: {
+          currentUser() {
+            return this.$store.state.auth.user;
+          },
+          postDate() {
             const currentPost = this.post;
-            const sqlDate = currentPost.createdAt.split(/[- T : .]/);
-            const formattedDate = new Date(Date.UTC(sqlDate[0], sqlDate[1]-1, sqlDate[2], sqlDate[3], sqlDate[4]))
-            console.log(formattedDate);
-            return formattedDate;
+            const d = new Date(currentPost.createdAt);
+            const options = {weekday: "long", year: "numeric", month: "long", day: "2-digit", hour:"numeric", minute:"numeric"};
+            const date = d.toLocaleDateString("fr-FR", options);
+            console.log( date );
+            return date;
           }
-        }
+        },
         /* data() {
           return {
               datetime: function () {
@@ -66,9 +95,13 @@
 </script>
 
 <style scoped>
-  h5 {
-    font-weight: 600;
-    font-size: 1.5em;
+  h3 {
+    font-weight: 500;
+    font-size: 1.8em;
+  }
+  p {
+    font-weight: 300;
+    font-size: 1.2em;
   }
   .fa-heart {
     color: red;

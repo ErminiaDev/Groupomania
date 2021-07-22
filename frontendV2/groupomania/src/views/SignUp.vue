@@ -58,7 +58,7 @@
                         </div>
 
                          <div class="form-group">
-                          <button type="submit" class="btn btn-light" :disabled="loading">
+                          <button type="submit" @click="clicked" class="btn btn-light" :disabled="loading">
                             <span v-show="loading" class="spinner-border spinner-border-sm"></span>
                             <span>S'inscrire</span>
                           </button>
@@ -131,6 +131,9 @@ export default {
       }
     },
     methods: {
+      clicked(){
+        console.log('sign up was clicked');
+      },
         handleSignUp(values) {
           console.log('handling signup')
           this.message = "";

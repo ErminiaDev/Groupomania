@@ -7,24 +7,11 @@
             <!-- conditionner la vue de l'H6 à l'admin -->
             <h6 class="card-subtitle my-3 text-muted">{{ user.uuid }}</h6>
             <p class="card-text my-2">{{ user.email }}</p>
-            <div class="row">
+            <div class="row py-3">
               <div class="col-12 text-center">
-                <router-link class="btn btn-outline-success" to="/utilisateurs/" > Voir le profil</router-link>
+                <!-- button will lead to the specific users page -->
+                <a class="btn btn-outline-success" :href="`/utilisateurs/${this.user.uuid}`" @click="sendUserData" > "Voir le profil</a>
               </div>
-            </div>
-            <div class="row py-2">
-                <div class="col-6">
-                    <a href="#" @click="$emit('delete-user', user.uuid)" class="btn btn-secondary">
-                      Supprimer
-                      <i class="mr-1 fas fa-times text-right"></i>
-                    </a>
-                </div>
-                <div class="col-6">
-                    <a href="#" @click="$emit('modify-user', user.uuid)" class="btn btn-warning">
-                      Modifier
-                      <i class="ml-1 fas fa-edit text-left"></i>
-                    </a>
-                </div>
             </div>
           </div>
         </div>
@@ -39,14 +26,21 @@ export default {
     props: {
         user: Object
     },
-    computed: {
+    methods: {
+      //sending the data to UserDetail.vue
+      sendUserData(){
+        const userData = localStorage.setItem('userData', JSON.stringify(this.user))
+        this.$emit('sendUserData', userData)
+      }
+    }
+    /* computed: {
         isUserDetail() {
            return this.$route.name === 'UserDetail'
         },
         isAllUsers() {
            return this.$route.name === 'AllUsers'
         }
-      }
+      } */
 }
 </script>
 

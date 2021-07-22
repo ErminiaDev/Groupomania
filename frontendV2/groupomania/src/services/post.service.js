@@ -2,6 +2,18 @@
 import authHeader from './auth-header';
 
 //posts
+// const xAccessToken = JSON.stringify(authHeader())
+// const myHeaders = JSON.stringify(authHeader());
+
+
+const currentUserToken = authHeader()["x-access-token"]
+
+
+const myHeaders = new Headers();
+
+myHeaders.append('Content-Type', 'application/json');
+myHeaders.append('x-access-token', currentUserToken);
+
 
 class PostService {
 
@@ -26,12 +38,11 @@ class PostService {
   }
 
   async addPost(newPost) { 
+    console.log(authHeader());
+    console.log(JSON.stringify(newPost));
   const res = await fetch('http://localhost:3000/api/publications', {
       method: 'POST',
-      headers: {
-        'Authorization' : authHeader(),
-        'Content-type' : 'application/json'
-        },
+      headers: myHeaders,
       body: JSON.stringify(newPost),
     })
     /* console.log('has attempted to fetch') */

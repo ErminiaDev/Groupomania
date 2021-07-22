@@ -1,13 +1,13 @@
 <template>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li v-if="userRole" class="nav-item">
         <router-link class="nav-link" to="/utilisateurs">{{ navlink1 }}</router-link>
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/publications">{{ navlink2 }}</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/profile">{{ navlink3 }}</router-link>
+        <router-link class="nav-link" :to="`/profile`">{{ navlink3 }}</router-link>
       </li>
     </ul>
 </template>
@@ -19,6 +19,21 @@
           navlink1: String,
           navlink2: String,
           navlink3: String
+        },
+        computed: {
+          //getting the data from User.vue
+          currentUser() {
+            return this.$store.state.auth.user;
+          },
+          userRole () {
+            if (this.currentUser === null) {
+              return false
+            } else if (this.currentUser.role === 1){
+              return true
+            } else {
+              return false
+            }
+          }
         }
     }
 </script>

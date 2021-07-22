@@ -53,7 +53,7 @@ export default {
         try { 
           console.log(newPost)
           postService.addPost(newPost)
-          /* this.$router.go(); */
+          this.$router.go();
           //display a message saying post is published
         } catch (error) {
           error.toString()
@@ -68,12 +68,6 @@ export default {
           error.toString()
         }
       },
-       /* //fetch all posts from the API
-      async fetchPosts() {
-        const res = await fetch('http://localhost:3000/api/publications')
-        const data = await res.json()
-        return data
-      }, */
     },
     async created() {
       try {

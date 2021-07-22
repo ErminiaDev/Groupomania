@@ -5,6 +5,7 @@ import SignUp from './views/SignUp.vue';
 import Profile from './views/Profile.vue';
 import PostsPage from './views/PostsPage.vue';
 import UsersPage from './views/UsersPage.vue';
+import UserDetail from './views/UserDetail.vue';
 
 const routes = [
     {
@@ -41,7 +42,13 @@ const routes = [
       path: '/utilisateurs',
       name: 'utilisateurs',
       component: UsersPage
-    }
+    },
+    {
+      path: '/utilisateurs/:id',
+      name: 'detail utilisateur',
+      component: UserDetail
+    },
+
   ];
 
 const router = createRouter({

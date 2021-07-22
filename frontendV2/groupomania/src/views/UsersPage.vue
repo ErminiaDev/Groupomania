@@ -14,7 +14,7 @@ import userService from '../services/user.service';
 
 
 export default {
-    name:'AllUsers',
+    name:'UsersPage',
     components: {
         Users,
     },
@@ -23,7 +23,7 @@ export default {
       users: [],
     }
   },
-  mounted() {
+ /*  mounted() {
     userService.getAllUsers().then(
       (response) => {
         this.content = response.data;
@@ -37,7 +37,7 @@ export default {
           error.toString();
       }
     );
-  },
+  }, */
   methods: {
     // delete a user
     async deleteUser(id) {
@@ -69,8 +69,13 @@ export default {
       return data
     } */
   },
-  /* async created() {
-    this.users = await this.fetchUsers()
-  } */
+  async created() {
+    try {
+      this.users = await userService.getAllUsers() 
+      console.log()
+    } catch (error) {
+      error.toString()
+    }
+  } 
 }
 </script>

@@ -1,22 +1,19 @@
 <template>
   <div class="container pb-5">
     <div v-if=loggedIn>
+        <User @sendUserData="user" />
       <header class="jumbotron">
         <h3>
-          Profil de <strong>{{currentUser.first_name}} {{currentUser.last_name}}</strong> 
+          Détail utilisateur: <strong>{{user.first_name}} {{user.last_name}}</strong> 
         </h3>
       </header>
       <p>
-        <strong>Token:</strong>
-        {{currentUser.token.substring(0, 20)}} ... {{currentUser.token.substr(currentUser.token.length - 20)}}
-      </p>
-      <p>
         <strong>Identifiant unique:</strong>
-        {{currentUser.uuid}}
+        {{user.uuid}}
       </p>
       <p>
         <strong>Email:</strong>
-        {{currentUser.email}}
+        {{user.email}}
       </p>
       <strong>Droits:</strong>
       {{displayRole}}
@@ -46,11 +43,16 @@ export default {
       name: 'Profile',
   computed: {
         //gets current user from vuex store and shows information
-        currentUser() {
-          return this.$store.state.auth.user;
+        user(){
+            console.log(localStorage.getItem('userData'))
+            const userString = localStorage.getItem('userData')
+            console.log(JSON.parse(userString))
+            const user = JSON.parse(userString)
+            console.log(user)
+            return user
         },
         displayRole() {
-          if (this.currentUser.role === 0) {
+          if (this.user.is_admin === 0) {
             return 'Utilisateur';
           } else {
             return 'Administrateur';
@@ -58,8 +60,8 @@ export default {
         },
         loggedIn() {
           return this.$store.state.auth.status.loggedIn;
-        }
-
+        },
+        
   },
   mounted() {
         //if no user logged in, directs to login page
