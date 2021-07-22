@@ -19,7 +19,7 @@ router.get("/:uuid", postCtrl.findOnePost)
 
 //post new post
 //router.post("/", auth, postCtrl.createPost);
-router.post("/", postCtrl.createPost);
+router.post("/", auth, postCtrl.createPost);
 
 //delete post
 //router.delete("/:id", authAdmin, postCtrl.deletePost);
