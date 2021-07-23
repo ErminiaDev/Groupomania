@@ -6,6 +6,7 @@ import Profile from './views/Profile.vue';
 import PostsPage from './views/PostsPage.vue';
 import UsersPage from './views/UsersPage.vue';
 import UserDetail from './views/UserDetail.vue';
+import EditUser from './views/EditUser.vue';
 
 const routes = [
     {
@@ -31,6 +32,12 @@ const routes = [
       path: '/profile',
       name: 'profile',
       component: Profile
+      // lazy-loaded??
+    },
+    {
+      path: '/modifier-utilisateur',
+      name: 'EditUser',
+      component: EditUser
       // lazy-loaded??
     },
     {
