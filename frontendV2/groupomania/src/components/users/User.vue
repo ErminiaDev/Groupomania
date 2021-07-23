@@ -30,7 +30,7 @@ export default {
       //sending the data to UserDetail.vue
       sendUserData(){
         const userData = localStorage.setItem('userData', JSON.stringify(this.user))
-        this.$emit('sendUserData', userData)
+        return userData
       }
     }
     /* computed: {

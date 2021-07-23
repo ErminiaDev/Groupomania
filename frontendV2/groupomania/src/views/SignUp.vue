@@ -5,7 +5,7 @@
         <div class="row pb-5">
             <div class="col-5 mx-auto">
                 <div class="bg-success card border-secondary text-light my-3 p-4">
-                  <Form @submit="handleSignUp" :validation-schema="schema">
+                  <Form @submit="clicked" :validation-schema="schema">
 
                       <div v-if="!successful">
 
@@ -58,7 +58,7 @@
                         </div>
 
                          <div class="form-group">
-                          <button type="submit" @click="clicked" class="btn btn-light" :disabled="loading">
+                          <button type="submit" class="btn btn-light" :disabled="loading">
                             <span v-show="loading" class="spinner-border spinner-border-sm"></span>
                             <span>S'inscrire</span>
                           </button>
@@ -132,7 +132,7 @@ export default {
     },
     methods: {
       clicked(){
-        console.log('sign up was clicked');
+        console.log('clicked');
       },
         handleSignUp(values) {
           console.log('handling signup')

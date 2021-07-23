@@ -20,7 +20,8 @@
         }, */
         methods: {
             logOut() {
-                //supprimer les données dans le store et redirigé vers la connexion
+                //supprimer les données dans le store et le localStorage et redirigé vers la connexion
+              localStorage.removeItem('userData')
               this.$store.dispatch('auth/logout');
               this.$router.push('/connexion');
             }

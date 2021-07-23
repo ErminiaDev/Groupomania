@@ -1,7 +1,6 @@
 <template>
   <div class="container pb-5">
     <div v-if=loggedIn>
-        <User @sendUserData="user" />
       <header class="jumbotron">
         <h3>
           Détail utilisateur: <strong>{{user.first_name}} {{user.last_name}}</strong> 
@@ -42,13 +41,12 @@
 export default {
       name: 'Profile',
   computed: {
-        //gets current user from vuex store and shows information
+        //gets the info of clicked user in User.vue
         user(){
             console.log(localStorage.getItem('userData'))
             const userString = localStorage.getItem('userData')
-            console.log(JSON.parse(userString))
+            // console.log(JSON.parse(userString))
             const user = JSON.parse(userString)
-            console.log(user)
             return user
         },
         displayRole() {
