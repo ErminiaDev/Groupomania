@@ -35,7 +35,7 @@ const routes = [
       // lazy-loaded??
     },
     {
-      path: '/modifier-utilisateur',
+      path: '/modifier-utilisateur/:id',
       name: 'EditUser',
       component: EditUser
       // lazy-loaded??
@@ -52,7 +52,7 @@ const routes = [
     },
     {
       path: '/utilisateurs/:id',
-      name: 'detail utilisateur',
+      name: 'UserDetail',
       component: UserDetail
     },
 

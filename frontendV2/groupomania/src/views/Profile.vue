@@ -29,7 +29,7 @@
             </a>
         </div>
         <div class="col-6 text-left">
-            <a href="#" @click="modifyUser" class="btn btn-warning">
+            <a href="#" @click="modifyCurrentUser" class="btn btn-warning">
               Modifier
               <i class="ml-1 fas fa-edit text-left"></i>
             </a>
@@ -65,6 +65,12 @@ export default {
         //if no user logged in, directs to login page
         if (!this.loggedIn) {
           this.$router.push('/connexion');
+    }
+  },
+  methods: {
+    modifyCurrentUser() {
+      localStorage.setItem('userData', JSON.stringify(this.currentUser))
+      this.$router.push(`/modifier-utilisateur/${this.currentUser.uuid}`);
     }
   }
 };

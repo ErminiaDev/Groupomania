@@ -10,7 +10,7 @@
             <div class="row py-3">
               <div class="col-12 text-center">
                 <!-- button will lead to the specific users page -->
-                <a class="btn btn-outline-success" :href="`/utilisateurs/${this.user.uuid}`" @click="sendUserData" > "Voir le profil</a>
+                <a class="btn btn-outline-success" :href="`/utilisateurs/${this.user.uuid}`" @click="sendUserData" > Voir le profil</a>
               </div>
             </div>
           </div>
