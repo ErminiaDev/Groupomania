@@ -1,14 +1,16 @@
 const db = require('../models');
 
 exports.createPost = (req, res) => {
-    //adding userUuid to the rest of destructured post body
+    /* //adding userUuid to the rest of destructured post body
     const { userUuid, ...posts } = req.body
     //following line needs testing; otherwise post creation works but without adding user uuid (no auth yet)
     const User = db.User.findOne({ where: { uuid : userUuid }})
-    console.log(User);
+    console.log(User); */
     const post = new db.Post({
-        ...posts,
-        userId: 1
+        userId: req.body.userId,
+        title: req.body.title,
+        category: req.body.category,
+        text: req.body.title
     });
     console.log(post);
     post.save()
@@ -38,6 +40,14 @@ exports.deletePost = (req, res) => {
 
 exports.findAllPosts = (req, res) => {
     db.Post.findAll(
+      /*   {
+            include: [
+                {
+                    model: db.User,
+                    attributes: ['first_name', 'last_name']
+                }
+            ]
+        } */
         // { include: db.User }
         )
     .then(post => res.status(200).json(post))

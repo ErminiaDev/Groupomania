@@ -53,10 +53,16 @@ export default {
     name: 'AddPost',
     data() {
         return {
+            userId: '',
             title: '',
             category: '',
             text: ''
         }
+    },
+    computed: {
+        currentUser() {
+          return this.$store.state.auth.user;
+        },
     },
     methods: {
         onSubmit(e) {
@@ -65,6 +71,7 @@ export default {
           console.log('collecting post')
 
           const newPost = {
+            userId: this.currentUser.uuid,
             title: this.title,
             category: this.category,
             text: this.text,

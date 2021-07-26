@@ -46,10 +46,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false 
     },
     userId: {
-       type: DataTypes.INTEGER,
+       type: DataTypes.UUID,
        references: {
           model: 'Users', // 'users' refers to table name
-          key: 'id', // 'id' refers to column name in users table
+          key: 'uuid', // 'uuid' refers to column name in users table
        },
        allowNull: false,
     }

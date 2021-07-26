@@ -53,7 +53,7 @@ export default {
         try { 
           console.log(newPost)
           postService.addPost(newPost)
-          this.$router.go();
+          // this.$router.go();
           //display a message saying post is published
         } catch (error) {
           error.toString()

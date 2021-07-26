@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
        type: DataTypes.INTEGER,
        references: {
           model: 'Users', // 'Users' refers to table name
-          key: 'id', // 'id' refers to column name in users table
+          key: 'uuid', // 'uuid' refers to column name in users table
        },
        allowNull: false,
     },
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
        type: DataTypes.INTEGER,
        references: {
           model: 'Posts', // 'Posts' refers to table name
-          key: 'id', // 'id' refers to column name in posts table
+          key: 'uuid', // 'uuid' refers to column name in posts table
        },
        allowNull: false,
     }
