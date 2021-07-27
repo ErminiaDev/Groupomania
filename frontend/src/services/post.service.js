@@ -45,9 +45,9 @@ class PostService {
       headers: myHeaders,
       body: JSON.stringify(newPost),
     })
-    /* console.log('has attempted to fetch') */
+    console.log('has attempted to fetch')
     const data = await res.json();
-    /* console.log('jsoned'); */
+    console.log('jsoned');
     this.posts = [...this.posts, data]
   }
 

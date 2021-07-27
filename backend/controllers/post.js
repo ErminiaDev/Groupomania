@@ -1,18 +1,16 @@
 const db = require('../models');
 
-exports.createPost = (req, res) => {
-    /* //adding userUuid to the rest of destructured post body
-    const { userUuid, ...posts } = req.body
-    //following line needs testing; otherwise post creation works but without adding user uuid (no auth yet)
-    const User = db.User.findOne({ where: { uuid : userUuid }})
-    console.log(User); */
+exports.createPost = async (req, res) => {
+    //fetching user with uuid from the front end
+    const user = await db.User.findOne({ where: { uuid : req.body.userId }});
+    
     const post = new db.Post({
-        userId: req.body.userId,
+        userId: user.id,
         title: req.body.title,
         category: req.body.category,
-        text: req.body.title
+        text: req.body.text
     });
-    console.log(post);
+
     post.save()
         .then(() => res.status(201).json({ message: 'Publication enregistrée!' }))
         .catch(error => res.status(400).json({ error: error.toString() }));
@@ -39,22 +37,27 @@ exports.deletePost = (req, res) => {
 };
 
 exports.findAllPosts = (req, res) => {
-    db.Post.findAll(
-      /*   {
-            include: [
-                {
-                    model: db.User,
-                    attributes: ['first_name', 'last_name']
-                }
-            ]
-        } */
-        // { include: db.User }
-        )
+    db.Post.findAll(/* {
+            include: [{
+                model: db.User,
+                as: 'Users'
+                }]
+    } */)
     .then(post => res.status(200).json(post))
     .catch(error => res.status(400).json({ error: error.toString() }));
 };
 
 exports.findOnePost = (req, res) => {
+    db.Post.findAll({
+        where: {
+            uuid: req.params.uuid
+        }
+    })
+    .then(post => res.status(200).json(post))
+    .catch(error => res.status(404).json({ error: error.toString() }));
+};
+
+exports.findOnePostByUUID = (req, res) => {
     db.Post.findAll({
         where: {
             uuid: req.params.uuid

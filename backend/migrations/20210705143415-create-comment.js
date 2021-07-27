@@ -16,7 +16,7 @@ module.exports = {
          type: DataTypes.INTEGER,
          references: {
             model: 'Users', // 'users' refers to table name
-            key: 'uuid', // 'uuid' refers to column name in users table
+            key: 'id', // 'uuid' refers to column name in users table
          },
          allowNull: false,
       },
@@ -24,7 +24,7 @@ module.exports = {
          type: DataTypes.INTEGER,
          references: {
             model: 'Posts', // 'posts' refers to table name
-            key: 'uuid', // 'id' refers to column name in posts table
+            key: 'id', // 'id' refers to column name in posts table
          },
          allowNull: false,
       },

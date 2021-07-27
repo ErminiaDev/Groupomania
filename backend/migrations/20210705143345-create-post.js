@@ -25,10 +25,10 @@ module.exports = {
         allowNull:false 
       },
       userId: {
-         type: DataTypes.UUID,
+         type: DataTypes.INTEGER,
          references: {
             model: 'Users', // 'users' refers to table name
-            key: 'uuid', // 'uuid' refers to column name in users table
+            key: 'id', // 'uuid' refers to column name in users table
          },
          allowNull: false,
       },

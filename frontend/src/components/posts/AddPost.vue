@@ -69,7 +69,7 @@ export default {
           e.preventDefault()
 
           console.log('collecting post')
-
+            console.log(this.$store.state.auth.user.id)
           const newPost = {
             userId: this.currentUser.uuid,
             title: this.title,
