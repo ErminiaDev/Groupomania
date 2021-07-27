@@ -9,16 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ User }){
+    /* static associate({ User }){
       this.belongsTo( User, { foreignKey : 'userId'} )
     };
 
     static associate({ Comment }){
       this.hasMany( Comment, { foreignKey : 'postId'} )
-    };
+    }; */
+
+    static associate(models) {
+      models.Post.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }, onDelete: 'CASCADE'
+      }),
+        models.Post.hasMany(models.Comment)
+    }
 
     toJSON() {
-      return { ...this.get(), id: undefined, userId: undefined }
+      return { ...this.get(), /* id: undefined, */ userId: undefined }
     }
 
   };
@@ -45,14 +54,14 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.TEXT,
       allowNull:false 
     },
-    userId: {
-       type: DataTypes.UUID,
+    /* userId: {
+       type: DataTypes.INTEGER,
        references: {
           model: 'Users', // 'users' refers to table name
-          key: 'uuid', // 'uuid' refers to column name in users table
+          key: 'id', // 'uuid' refers to column name in users table
        },
        allowNull: false,
-    }
+    } */
   }, {
     sequelize,
     modelName: 'Post',

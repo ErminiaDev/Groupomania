@@ -9,16 +9,29 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ User }){
+    /* static associate({ User }){
       this.belongsTo( User, { foreignKey : 'userId'} )
     };
 
     static associate({ Post }){
       this.belongsTo( Post, { foreignKey : 'postId'} )
-    };
+    }; */
+
+    static associate (models) {
+      models.Comment.belongsTo(models.User,{
+        foreignKey: {
+          allowNull: false
+        }, onDelete: 'CASCADE',
+      }),
+      models.Comment.belongsTo(models.Post, {
+        foreignKey: {
+          allowNull: false
+        }, onDelete: 'CASCADE',
+      })
+    }
 
     toJSON() {
-      return { ...this.get(), id: undefined, userId: undefined, postId: undefined }
+      return { ...this.get(), /* id: undefined, */ userId: undefined, postId: undefined }
     }
 
   };
@@ -29,15 +42,19 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     text: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    userId: {
+    /* userId: {
        type: DataTypes.INTEGER,
        references: {
           model: 'Users', // 'Users' refers to table name
-          key: 'uuid', // 'uuid' refers to column name in users table
+          key: 'id', // 'uuid' refers to column name in users table
        },
        allowNull: false,
     },
@@ -45,10 +62,10 @@ module.exports = (sequelize, DataTypes) => {
        type: DataTypes.INTEGER,
        references: {
           model: 'Posts', // 'Posts' refers to table name
-          key: 'uuid', // 'uuid' refers to column name in posts table
+          key: 'id', // 'uuid' refers to column name in posts table
        },
        allowNull: false,
-    }
+    } */
   }, {
     sequelize,
     modelName: 'Comment',

@@ -1,27 +1,27 @@
 'use strict';
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async (queryInterface, Datatypes) => {
     await queryInterface.createTable('Users', {
       id: {
-        type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        type: Datatypes.INTEGER
       },
       uuid: { //to create a more complex user id for security (not knowing how many users exist)
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4
+        type: Datatypes.UUID,
+        defaultValue: Datatypes.UUIDV4
       },
       first_name: {
-        type:DataTypes.STRING,
+        type:Datatypes.STRING,
         allowNull:false
       },
       last_name: {
-        type:DataTypes.STRING,
+        type:Datatypes.STRING,
         allowNull:false
       },
       email: {
-        type:DataTypes.STRING,
+        type:Datatypes.STRING,
         allowNull:false,
         //pour vérifier que le mail soit unique
         validate: {
@@ -33,20 +33,20 @@ module.exports = {
         }
       },
       password: {
-        type:DataTypes.STRING,
+        type:Datatypes.STRING,
         allowNull:false
       },
       is_admin: {
-        type:DataTypes.SMALLINT,
+        type:Datatypes.SMALLINT,
         defaultValue: 0
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Datatypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Datatypes.DATE
       }
     });
   },

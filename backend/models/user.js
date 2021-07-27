@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,16 +7,21 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Post }){
+    /* static associate({ Post }){
       this.hasMany( Post, { foreignKey : 'userId'} )
     };
 
     static associate({ Comment }){
       this.hasMany( Comment, { foreignKey : 'userId'} )
-    };
+    }; */
+
+    static associate(models) {
+      models.User.hasMany(models.Post);
+      models.User.hasMany(models.Comment);
+    }
 
     toJSON() {
-      return { ...this.get(), id: undefined }
+      return { ...this.get(), /* id: undefined */ }
     }
 
   };
@@ -63,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: "User",
   });
   return User;
 };
