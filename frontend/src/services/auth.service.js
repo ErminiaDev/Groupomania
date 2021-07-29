@@ -30,8 +30,8 @@ const API_URL = 'http://localhost:3000/api/utilisateurs/';
   //signup
   register(user) {
     return axios.post(API_URL + 'signup', {
-      firstname: user.first_name,
-      lastname: user.last_name,
+      first_name: user.first_name,
+      last_name: user.last_name,
       email: user.email,
       password: user.password
     });

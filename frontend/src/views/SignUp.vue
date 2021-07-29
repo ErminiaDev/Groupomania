@@ -5,51 +5,67 @@
         <div class="row pb-5">
             <div class="col-5 mx-auto">
                 <div class="bg-success card border-secondary text-light my-3 p-4">
-                  <Form @submit="clicked" :validation-schema="schema">
+                   <!-- <Form @submit="clicked">
+                    <p>
+                      These inputs use global validators to perform validation, the second
+                      argument can be defined as another field's value by prefixing that field
+                      name with `@`
+                    </p>
 
+                    <div>
+                      <label for="password">Password</label>
+                      <Field
+                        id="password"
+                        name="password"
+                        type="password"
+                        
+                      />
+                      <ErrorMessage name="password" />
+                    </div>
+
+                    <div>
+                      <label for="passwordConfirmation">Confirm Password </label>
+                      <Field
+                        id="passwordConfirmation"
+                        name="passwordConfirmation"
+                        type="password"
+                      />
+                      <ErrorMessage name="passwordConfirmation" />
+                    </div>
+
+                    <button type="submit">Submit</button>
+                  </Form> -->
+<!--                   <Form @submit="clicked" :validation-schema="schema">
+ -->                 <Form @submit="handleSignUp" :validation-schema="schema">
                       <div v-if="!successful">
 
                         <div class="form-group pb-4 lead">
                           <label for="nom">Nom</label>
                           <Field name="last_name" type="text" class="form-control" />
                           <ErrorMessage name="last_name" class="error-feedback" />
-                          <!-- <input type="text" v-model="user.last_name" class="form-control" id="nom" required> -->
                         </div>
 
                         <div class="form-group pb-4 lead">
                           <label for="nom">Prénom</label>
                           <Field name="first_name" type="text" class="form-control" />
                           <ErrorMessage name="first_name" class="error-feedback" />
-                          <!-- <input type="text" v-model="user.first_name" class="form-control" id="prénom" required> -->
                         </div>
 
                         <div class="form-group pb-4 lead">
                           <label for="email">Adresse email</label>
                           <Field name="email" type="text" class="form-control" />
                           <ErrorMessage name="email" class="error-feedback" />
-                          <!-- <input type="email" v-model="user.email"  class="form-control" id="email" name="email" required> -->
                         </div>
-                        <!-- <div v-if="submitted && errors.has('email')" class="alert-danger">
-                            {{errors.first('email')}}
-                        </div>
-                        <div v-else-if="errors.has('email')" class="alert alert-danger" role="alert">
-                            Un email est requis!
-                        </div> -->
+                        
                         
 
                         <div class="form-group pb-4 lead">
                           <label for="mot-de-passe">Mot de passe</label>
                           <Field name="password" type="password" class="form-control" aria-describedby="passwordHelp"/>
                           <ErrorMessage name="password" class="error-feedback" />
-                          <!-- <input type="password" v-model="user.password" class="form-control" id="mot-de-passe" name="password" aria-describedby="passwordHelp" required> -->
                           <small id="passwordHelp" class="form-text">Nous ne partagerons jamais votre mot de passe.</small>
                         </div>
-                        <!-- <div v-if="submitted && errors.has('password')" class="alert-danger">
-                            {{errors.first('password')}}
-                        </div>
-                        <div v-else-if="errors.has('password')" class="alert alert-danger" role="alert">
-                            Un mot de passe est requis!
-                        </div> -->
+                        
                         
 
                         <div class="form-group form-check pb-4">
@@ -63,17 +79,21 @@
                             <span>S'inscrire</span>
                           </button>
                         </div>
-                        <!-- <div class="form-group">
-                          <button type="submit" class="btn btn-light" :disabled="loading">
-                              <span v-show="loading" class="spinner-border spinner-border-sm"></span>
-                              <span>{{ htmlSignUp }}</span>
-                            </button>  
-                        </div> -->
-
-                        
-                      </div>
-                      
+                      </div>                  
                     </Form>
+                  <div
+                    v-if="message"
+                    class="alert"
+                    :class="successful ? 'alert-success' : 'alert-danger'"
+                  >
+                    {{ message }}
+                    <div class="py-3 row">
+                      <a href="/connexion" class="mx-auto btn btn-light" :enabled="loading">
+                        <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                        <span>Se connecter</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -92,7 +112,12 @@ export default {
     },
     data() {
       const schema = yup.object().shape({
-        username: yup
+        first_name: yup
+          .string()
+          .required("Username is required!")
+          .min(3, "Must be at least 3 characters!")
+          .max(20, "Must be maximum 20 characters!"),
+        last_name: yup
           .string()
           .required("Username is required!")
           .min(3, "Must be at least 3 characters!")
@@ -131,7 +156,7 @@ export default {
         console.log('clicked');
       },
         handleSignUp(values) {
-          console.log('handling signup')
+          console.log('handling signup', values)
           this.message = "";
           this.successful = false;
           this.loading = true;
