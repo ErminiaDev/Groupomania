@@ -56,8 +56,6 @@
                           <Field name="email" type="text" class="form-control" />
                           <ErrorMessage name="email" class="error-feedback" />
                         </div>
-                        
-                        
 
                         <div class="form-group pb-4 lead">
                           <label for="mot-de-passe">Mot de passe</label>
@@ -65,8 +63,6 @@
                           <ErrorMessage name="password" class="error-feedback" />
                           <small id="passwordHelp" class="form-text">Nous ne partagerons jamais votre mot de passe.</small>
                         </div>
-                        
-                        
 
                         <div class="form-group form-check pb-4">
                           <input type="checkbox" class="form-check-input" id="conditions-d-utilisation" required>

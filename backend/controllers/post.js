@@ -43,6 +43,17 @@ exports.findAllPosts = async (req, res) => {
             {
             model: db.User,
             attributes: ['first_name', 'last_name']
+            },
+            {
+            model: db.Comment,
+            attributes: ['text'],
+            order: [["createdAt", "DESC"]],
+            include: [
+                {
+                model: db.User,
+                attributes: ['first_name', 'last_name']
+                }
+            ]
             }
         ]
     })
