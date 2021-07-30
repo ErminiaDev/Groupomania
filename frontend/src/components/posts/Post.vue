@@ -24,10 +24,10 @@
                     </a>
                   </div>
                   <div class="col-6 text-right">
-                    <a href="#" class="mr-2 btn btn-outline-primary">
+                    <button type="button" @click="sendPostData" class="mr-2 btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
                         <i class="far fa-comment-alt"></i> 
                         Commenter
-                    </a>
+                    </button>
                     <a href="#collapseComments" data-toggle="collapse" class="ml-2 btn btn-outline-success" role="button" aria-expanded="false" aria-controls="collapseComments">
                         <i class="far fa-comments"></i>
                         Voir les commentaires
@@ -38,6 +38,7 @@
                 
               </div>
               <Comments :comments="comments"/>
+              <AddComment/>
             </div>
         </div>
     </div>
@@ -45,10 +46,12 @@
 
 <script>
     import Comments from "../comments/Comments"
+    import AddComment from "../comments/AddComment"
     export default {
         name: 'Post',
         components: {
           Comments,
+          AddComment
         },
         props: {
           post: Object,
@@ -80,6 +83,13 @@
             return date;
           }
         },
+        methods: {
+          sendPostData(){
+            console.log('comment clicked')
+            const postData = localStorage.setItem('postData', JSON.stringify(this.post.uuid))
+            return postData
+          }
+        }
         /* data() {
           return {
               datetime: function () {

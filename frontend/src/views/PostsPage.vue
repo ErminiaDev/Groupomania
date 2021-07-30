@@ -2,6 +2,7 @@
     <div class="container">
         <h1 class="py-5">Publications</h1>
         <AddPost @add-post="newPost"/>
+        <AddComment @add-comment="newComment"/>
         <Posts 
           @delete-post="deletePost"
           :posts="posts"
@@ -12,7 +13,9 @@
 <script>
 import Posts from "../components/posts/Posts.vue"
 import AddPost from '../components/posts/AddPost'
+import AddComment from '../components/comments/AddComment'
 import postService from '../services/post.service';
+import commentService from '../services/comment.service';
 /* import authHeader from '../services/auth-header';
  */
 /* import PostService from '../services/post.service';
@@ -22,11 +25,13 @@ export default {
     name:'PostsPage',
     components: {
         Posts,
-        AddPost
+        AddPost,
+        AddComment
     },
     data() {
       return {
         posts: [],
+        comments: [],
       }
     },
     /* mounted() {
@@ -68,6 +73,25 @@ export default {
           error.toString()
         }
       },
+      async newComment(newComment) {
+        try { 
+          console.log(newComment)
+          commentService.addComment(newComment)
+          // this.$router.go();
+          //display a message saying post is published
+        } catch (error) {
+          error.toString()
+        }
+      },
+      // delete a post
+      async deleteComment(uuid) {
+        try {
+          commentService.destroyComment(uuid)
+          this.comments = this.comments.filter((comment) => comment.uuid !== uuid)
+        } catch (error) {
+          error.toString()
+        }
+      },
     },
     async created() {
       try {
@@ -75,6 +99,6 @@ export default {
       } catch (error) {
         error.toString()
       }
-    } 
+    }, 
 }
 </script>

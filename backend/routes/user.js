@@ -6,8 +6,6 @@ const userCtrl = require('../controllers/user');
 
 const auth = require('../middlewares/auth');
 
-const authAdmin = require('../middlewares/authAdmin');
-
 
 
 //get all users

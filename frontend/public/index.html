@@ -20,5 +20,10 @@
     <script src="<%= BASE_URL %>jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="<%= BASE_URL %>bootstrap-4.6.0/js/bootstrap.min.js"></script>
+    <script>
+      $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+      })
+    </script>
   </body>
 </html>

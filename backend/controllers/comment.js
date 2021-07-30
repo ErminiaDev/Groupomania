@@ -4,7 +4,7 @@ exports.createComment = async (req, res) => {
     // fetching user with uuid from the front end
     const user = await db.User.findOne({where: {uuid : req.body.userId}});
     // fetching post with uuid from the front end
-    const post = await db.User.findOne({where: {uuid : req.body.postId}});
+    const post = await db.Post.findOne({where: {uuid : req.body.postId}});
     const comment = new db.Comment({
         UserId: user.id,
         PostId: post.id,
