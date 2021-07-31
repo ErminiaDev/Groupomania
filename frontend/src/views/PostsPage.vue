@@ -57,7 +57,9 @@ export default {
       async newPost(newPost) {
         try { 
           console.log(newPost)
-          postService.addPost(newPost)
+          const post = await postService.addPost(newPost)
+          console.log(post, 'post')
+          this.posts = [post, ...this.posts]
           // this.$router.go();
           //display a message saying post is published
         } catch (error) {
@@ -95,7 +97,8 @@ export default {
     },
     async created() {
       try {
-        this.posts = await postService.getAllPosts() 
+        this.posts = await postService.getAllPosts()
+        console.log(this.posts, 'jj')
       } catch (error) {
         error.toString()
       }

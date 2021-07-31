@@ -58,10 +58,21 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error: 1 + error.toString() }));
 }
 
-exports.updateUser = (req, res, next) => {
-  db.User.updateOne({ uuid: req.params.id }, { ...req.body, uuid: req.params.id })
-    .then(() => res.status(200).json({ message: 'Utilisateur modifié !'}))
-    .catch(error => res.status(400).json({ error }));
+exports.updateUser = async (req, res, next) => {
+  try {
+    req.body.password = await bcrypt.hash(req.body.password, 10);
+    let user = await db.User.findOne({where: {uuid: req.body.uuid}});
+    if (!user) throw new Error('User not found')
+
+          user.email = req.body.email,
+          user.password = req.body.password,
+          user.is_admin = req.body.is_admin
+          await user.save()
+          res.send(user);
+
+  } catch (error) {
+      return res.status(400).json({ error: error.toString() })
+  }
 };
 
 exports.deleteUser = (req, res) => {

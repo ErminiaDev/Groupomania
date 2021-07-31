@@ -37,7 +37,7 @@
                 
                 
               </div>
-              <Comments :comments="comments"/>
+              <Comments :comments="post.Comments"/>
               <AddComment/>
             </div>
         </div>

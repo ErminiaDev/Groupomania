@@ -48,7 +48,8 @@ class PostService {
     console.log('has attempted to fetch')
     const data = await res.json();
     console.log('jsoned');
-    this.posts = [...this.posts, data]
+    console.log(this, 'this')
+    return data
   }
 
   async destroyPost(uuid) {

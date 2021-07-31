@@ -20,7 +20,7 @@ export default {
   computed: {
         //gets the info of clicked user in User.vue
         user(){
-            console.log(localStorage.getItem('userData'))
+            // console.log(localStorage.getItem('userData'))
             const userString = localStorage.getItem('userData')
             // console.log(JSON.parse(userString))
             const user = JSON.parse(userString)
@@ -43,6 +43,7 @@ export default {
         if (!this.loggedIn) {
           this.$router.push('/connexion');
     }
-  }
+  },
+  
 };
 </script>

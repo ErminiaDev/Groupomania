@@ -4,6 +4,13 @@ import authHeader from './auth-header';
 
 //users
 
+const currentUserToken = authHeader()["x-access-token"]
+
+
+const myHeaders = new Headers();
+
+myHeaders.append('Content-Type', 'application/json');
+myHeaders.append('x-access-token', currentUserToken);
 
 class UserService {
 
@@ -16,6 +23,21 @@ class UserService {
           const users = await res.json()
           return users 
     }
+
+ async updateUser(modifiedUser) { 
+     console.log(authHeader());
+     console.log(JSON.stringify(modifiedUser));
+   const res = await fetch(`http://localhost:3000/api/utilisateurs/${modifiedUser.uuid}}`, {
+       method: 'PUT',
+       headers: myHeaders,
+       body: JSON.stringify(modifiedUser),
+     })
+     console.log('has attempted to fetch')
+     const data = await res.json();
+     console.log('jsoned');
+     return data;
+     //this.users = [...this.users, data]
+   }
   
 }
 

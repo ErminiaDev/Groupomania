@@ -5,12 +5,14 @@
         Modifier l'utilisateur: <strong>{{user.first_name}} {{user.last_name}}</strong> 
       </h3>
     </header>
-    <UserInfo/>
+    <UserInfo @modify-user="modifyUser"/>
   </div>
 </template>
 
 <script>
 import UserInfo from "../components/users/UserInfo.vue"
+import userService from '../services/user.service';
+
 
 export default {
   name: 'EditUser',
@@ -20,7 +22,7 @@ export default {
   computed: {
         //gets current user from vuex store and shows information
         user(){
-            console.log(localStorage.getItem('userData'))
+            // console.log(localStorage.getItem('userData'))
             const userString = localStorage.getItem('userData')
             // console.log(JSON.parse(userString))
             const user = JSON.parse(userString)
@@ -43,6 +45,20 @@ export default {
         if (!this.loggedIn) {
           this.$router.push('/connexion');
     }
+  },
+  methods: {
+    async modifyUser(modifyUser) {
+      try { 
+        console.log(modifyUser, 'eee')
+        const user = await userService.updateUser(modifyUser)
+        this.users = [user, ...this.users]
+        this.$router.push('/profile');
+        // this.$router.go();
+        //display a message saying post is published
+      } catch (error) {
+        error.toString()
+      }
+    },
   }
 };
 </script>

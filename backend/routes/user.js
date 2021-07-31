@@ -13,7 +13,7 @@ const auth = require('../middlewares/auth');
 router.get("/", userCtrl.findAllUsers);
 
 //get a single user
-router.get("/:id",  userCtrl.findOneUser);
+router.get("/:uuid",  userCtrl.findOneUser);
 
 //sign up new user
 router.post("/signup", userCtrl.signUp);
@@ -22,10 +22,10 @@ router.post("/signup", userCtrl.signUp);
 router.post("/login", userCtrl.login);
 
 //delete user
-router.delete("/:id", userCtrl.deleteUser);
+router.delete("/:uuid", userCtrl.deleteUser);
 
 //edit a user
 //router.put('/:id', auth, userCtrl.updateUser);
-router.put('/:id', userCtrl.updateUser);
+router.put('/:uuid', userCtrl.updateUser);
 
 module.exports = router;
