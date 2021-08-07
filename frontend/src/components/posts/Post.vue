@@ -20,7 +20,7 @@
                 </blockquote>
                 <div class="row">
                   <div class="col-6 text-left">
-                    <a href="#" @click="$emit('delete-post', post.id)" class="btn btn-secondary">
+                    <a v-if="userRole" href="#" @click="$emit('delete-post', post.id)" class="btn btn-secondary">
                     Supprimer
                     <i class="ml-1 fas fa-times text-right"></i>
                     </a>
@@ -77,7 +77,16 @@
           currentPostUUID() {
             const currentUUID = this.post.uuid;
             return currentUUID;
-          }
+          },
+          userRole () {
+              if (this.currentUser === null) {
+                return false
+              } else if (this.currentUser.is_admin === 1){
+                return true
+              } else {
+                return false
+              }
+          },
         },
         methods: {
           sendPostData(){
