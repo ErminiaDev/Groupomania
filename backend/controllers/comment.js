@@ -11,7 +11,7 @@ exports.createComment = async (req, res) => {
         text: req.body.text
     });
     comment.save()
-    .then(() => res.status(201).json({ message: 'Commentaire enregistré!' }))
+    .then(() => res.status(200).json({ message: 'Commentaire enregistré!' }))
     .catch(error => res.status(400).json({ error: error.toString() }));
 }
 

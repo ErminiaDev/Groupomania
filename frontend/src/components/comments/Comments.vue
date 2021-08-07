@@ -3,6 +3,7 @@
         <div :key="comment.uuid" v-for="comment in comments">
             <Comment 
                 :comment="comment"
+                @delete-comment="$emit('delete-comment', comment.uuid)"
             />
         </div>
     </div>

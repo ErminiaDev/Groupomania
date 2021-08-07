@@ -12,10 +12,12 @@
                 <div class="row">
                   <div class="col-12 text-left">
                     <h3 class="card-title text-left"> {{ post.title }}</h3>
-                    <!-- <p class="lead"> {{ post.uuid }}</p> -->
                   </div>
                 </div>                
-                <p class="card-text pb-3 text-left"> {{ post.text }} </p>
+                <p class="card-text text-left"> {{ post.text }} </p>
+                <blockquote class="blockquote pb-3">
+                    <footer class="blockquote-footer text-left"><i>écrit par {{post.User.first_name}} {{post.User.last_name}}</i></footer>
+                </blockquote>
                 <div class="row">
                   <div class="col-6 text-left">
                     <a href="#" @click="$emit('delete-post', post.id)" class="btn btn-secondary">
@@ -28,7 +30,7 @@
                         <i class="far fa-comment-alt"></i> 
                         Commenter
                     </button>
-                    <a href="#collapseComments" data-toggle="collapse" class="ml-2 btn btn-outline-success" role="button" aria-expanded="false" aria-controls="collapseComments">
+                    <a @click="$emit('toggle-comments', post.uuid)" class="ml-2 btn btn-outline-success" role="button">
                         <i class="far fa-comments"></i>
                         Voir les commentaires
                     </a>
@@ -37,7 +39,11 @@
                 
                 
               </div>
-              <Comments :comments="post.Comments"/>
+              <Comments 
+                :comments="post.Comments"
+                v-if="post.show_comments"
+                @delete-comment="$emit('delete-comment', this.comments.uuid)"
+              />
               <AddComment/>
             </div>
         </div>
@@ -56,20 +62,6 @@
         props: {
           post: Object,
         },
-        data() {
-          return {
-            comments: [
-              {
-                text: 'Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow\'s nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.',
-                author: 'Sandra Dee'
-              },
-              {
-                text: 'Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.',
-                author: 'Fatboy Slim'
-              }
-            ],
-          }
-        },
         computed: {
           currentUser() {
             return this.$store.state.auth.user;
@@ -81,6 +73,10 @@
             const date = d.toLocaleDateString("fr-FR", options);
             console.log( date );
             return date;
+          },
+          currentPostUUID() {
+            const currentUUID = this.post.uuid;
+            return currentUUID;
           }
         },
         methods: {
@@ -90,17 +86,6 @@
             return postData
           }
         }
-        /* data() {
-          return {
-              datetime: function () {
-              const currentPost = this.post;
-              const sqlDate = currentPost.createdAt.split(/[- T : .]/);
-              var date = new Date(Date.UTC(sqlDate[0], sqlDate[1]-1, sqlDate[2], sqlDate[3], sqlDate[4]))
-              console.log(date);
-              return date;
-            }
-          } 
-        }    */
     }
 </script>
 

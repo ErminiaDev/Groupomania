@@ -50,7 +50,7 @@ exports.login = (req, res, next) => {
                     email: user.email,
                     first_name: user.first_name,
                     last_name: user.last_name,
-                    role: user.is_admin
+                    is_admin: user.is_admin
                 });
             })
             .catch(error => res.status(500).json({ error: 2 + error.toString() }))
@@ -78,7 +78,7 @@ exports.updateUser = async (req, res, next) => {
 exports.deleteUser = (req, res) => {
     db.User.destroy({
         where: {
-            uuid: req.params.id
+            uuid: req.params.uuid
         }
     })
     .then(() => res.status(200).json({ message: 'utilisateur supprimé!' }))

@@ -22,7 +22,7 @@ class CommentService {
     console.log('has attempted to fetch')
     const data = await res.json();
     console.log('jsoned');
-    this.comments = [...this.comments, data]
+    return data;
   }
 
   async destroyComment(uuid) {

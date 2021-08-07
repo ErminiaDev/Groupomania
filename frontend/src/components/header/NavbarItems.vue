@@ -28,7 +28,7 @@
           userRole () {
             if (this.currentUser === null) {
               return false
-            } else if (this.currentUser.role === 1){
+            } else if (this.currentUser.is_admin === 1){
               return true
             } else {
               return false

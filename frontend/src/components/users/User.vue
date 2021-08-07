@@ -33,14 +33,6 @@ export default {
         return userData
       }
     }
-    /* computed: {
-        isUserDetail() {
-           return this.$route.name === 'UserDetail'
-        },
-        isAllUsers() {
-           return this.$route.name === 'AllUsers'
-        }
-      } */
 }
 </script>
 

@@ -5,12 +5,14 @@
         Détail utilisateur: <strong>{{user.first_name}} {{user.last_name}}</strong> 
       </h3>
     </header>
-    <UserInfo/>
+    <UserInfo @delete-user="deleteUser"/>
   </div>
 </template>
 
 <script>
 import UserInfo from "../components/users/UserInfo.vue"
+import userService from '../services/user.service';
+
 
 export default {
   name: 'UserDetail',
@@ -36,6 +38,9 @@ export default {
         loggedIn() {
           return this.$store.state.auth.status.loggedIn;
         },
+        currentUser() {
+          return this.$store.state.auth.user;
+        },
         
   },
   mounted() {
@@ -44,6 +49,31 @@ export default {
           this.$router.push('/connexion');
     }
   },
+  methods: {
+    logOut() {
+        //supprimer les données dans le store et le localStorage et redirigé vers la connexion
+      console.log('loggin out')
+      localStorage.removeItem('userData')
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/connexion');
+    },
+    async deleteUser(uuid) {
+      try { 
+        console.log(uuid, 'eeeqkj')
+        await userService.destroyUser(uuid)
+        console.log('destroyed')
+        //this.users = this.users.filter((user) => user.uuid !== uuid)
+        if (uuid === this.currentUser.uuid) {
+          this.logOut()
+        } else {
+          console.log('pushing to       profile')
+          this.$router.push('/profile');
+        }
+      } catch (error) {
+        console.log(error.toString())
+      }
+    },
+  }
   
 };
 </script>

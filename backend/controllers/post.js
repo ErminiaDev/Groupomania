@@ -46,7 +46,7 @@ exports.findAllPosts = async (req, res) => {
             },
             {
             model: db.Comment,
-            attributes: ['text'],
+            attributes: ['uuid', 'text'],
             order: [["createdAt", "DESC"]],
             include: [
                 {

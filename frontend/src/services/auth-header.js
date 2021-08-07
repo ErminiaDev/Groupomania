@@ -15,3 +15,9 @@ export default function authHeader() {
     return {};
   }
 }
+
+/*
+App.vue -> on created hook request for a user by token, which you store in localstorage
+If user exists and on return by token we got the user, then we store our user to vuex
+Else, if we got an error in response, we push user to /login page
+*/

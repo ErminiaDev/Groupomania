@@ -52,12 +52,12 @@
           <div class="col-8 mx-auto">
               <p class="lead">Role</p>
               <div class="form-check">
-                <Field name="is_admin" id="user" value="1" type="radio" class="form-check-input"/>
+                <Field name="is_admin" id="user" :value="1" type="radio" class="form-check-input"/>
                 <label class="form-check-label" for="user">administrateur</label>
                 <ErrorMessage name="is_admin" class="error-feedback" />
               </div>
               <div class="form-check">
-                <Field name="is_admin" id="admin" value="0" type="radio" class="form-check-input"/>
+                <Field name="is_admin" id="admin" :value="0" type="radio" class="form-check-input"/>
                 <label class="form-check-label" for="admin">utilisateur</label>
                 <ErrorMessage name="is_admin" class="error-feedback" />
               </div>
@@ -105,7 +105,7 @@
           </a>
       </div>
       <div v-if="userRole" class="col-6 text-left">
-          <a href="#" @click="deleteUser" class="btn btn-secondary">
+          <a href="#" @click="$emit('delete-user', user.uuid)" class="btn btn-secondary">
             Supprimer
             <i class="ml-2 fas fa-times text-right"></i>
           </a>
@@ -169,7 +169,7 @@ export default {
         userRole () {
             if (this.currentUser === null) {
               return false
-            } else if (this.currentUser.role === 1){
+            } else if (this.currentUser.is_admin === 1){
               return true
             } else {
               return false
@@ -200,30 +200,11 @@ export default {
 
       this.$emit('modify-user', modifyUser)
     },
-    /* editUser(values) {
-      console.log('editUser', values)
-      this.message = "";
-      this.successful = false;
-      this.loading = true;
-
-      this.$store.dispatch("auth/modify", values).then(
-        (data) => {
-          this.message = data.message;
-          this.successful = true;
-          this.loading = false;
-        },
-        (error) => {
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          this.successful = false;
-          this.loading = false;
-        }
-      );
-    }, */
+    deleteUser() {
+      const uuid = this.user.uuid
+      console.log(uuid)
+      this.$emit('delete-User', uuid)
+    }
   }
 };
 </script>

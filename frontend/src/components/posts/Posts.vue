@@ -3,6 +3,8 @@
         <div :key="post.uuid" v-for="post in posts">
             <Post 
                 @delete-post="$emit('delete-post', post.uuid)"
+                @delete-comment="$emit('delete-comment', this.comments.uuid)"
+                @toggle-comments="$emit('toggle-comments', post.uuid)"
                 :post="post"
             />
         </div>
@@ -19,6 +21,5 @@ export default {
     components: {
         Post
     },
-    emits: ['delete-post'],
 }
 </script>

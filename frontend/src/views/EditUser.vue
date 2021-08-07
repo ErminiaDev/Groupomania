@@ -29,7 +29,7 @@ export default {
             return user
         },
         displayRole() {
-          if (this.currentUser.role === 0) {
+          if (this.currentUser.is_admin === 0) {
             return 'Utilisateur';
           } else {
             return 'Administrateur';
@@ -51,12 +51,16 @@ export default {
       try { 
         console.log(modifyUser, 'eee')
         const user = await userService.updateUser(modifyUser)
-        this.users = [user, ...this.users]
+        console.log(user, 'user')
+        //first step before changing in vuex
+        const prevUser = JSON.parse(localStorage.getItem('user'))
+
+        localStorage.setItem('user', JSON.stringify({ ...user, token: prevUser.token }));
+        this.$store.commit('auth/loginSuccess', { ...user, token: prevUser.token })
         this.$router.push('/profile');
-        // this.$router.go();
         //display a message saying post is published
       } catch (error) {
-        error.toString()
+        console.log(error.toString())
       }
     },
   }
