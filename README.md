@@ -2,8 +2,12 @@ This is a social network dedicated to sharing posts and commenting between cowor
 
 Built with Node v14.17.2 and Vue cli v4.5.13
 
-to run frontend : 'npm run serve'
+first run 'npm install' in both frontend and backend folders
 
-backend: 'nodemon'
+then to run frontend : 'npm run serve'
 
+and backend: 'nodemon'
 
+frontend runs by default on localhost:8080
+
+backend runs by default on localhost:3000
