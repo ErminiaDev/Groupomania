@@ -1,10 +1,12 @@
 <template>
+<div id="content">
     <div class="container">
         <h1 class="py-5">Utilisateurs</h1>
         <Users 
           :users="users"
         />
     </div>
+</div>
 </template>
 
 <script>
@@ -32,3 +34,18 @@ export default {
   } 
 }
 </script>
+<style scoped>
+  #content {
+    height: 100%;
+    background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.45), 
+      rgba(255, 255, 255, 0.45)
+    ),
+    url('../assets/images/fond.jpg')
+    ;
+    background-position: top;
+    background-repeat: repeat-y;
+    background-size: cover;
+  }
+</style>

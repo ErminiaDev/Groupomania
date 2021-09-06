@@ -2,15 +2,14 @@
     <div class="container">
         <div :key="post.uuid" v-for="post in posts">
             <Post 
-                @delete-post="$emit('delete-post', post.uuid)"
-                @delete-comment="$emit('delete-comment', this.comments.uuid)"
-                @toggle-comments="$emit('toggle-comments', post.uuid)"
+                v-bind="$attrs"
                 :post="post"
             />
         </div>
     </div>
 </template>
-
+/* v-bind is for passing all attributes from postspage.vue to posts.vue directly
+ */
 <script>
 import Post from './Post.vue'
 export default {

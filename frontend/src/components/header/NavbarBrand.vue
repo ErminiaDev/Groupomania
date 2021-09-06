@@ -1,6 +1,6 @@
 <template>
     <router-link class="navbar-brand mr-3 py-3" to="/">
-        <img src="logo/icon-left-font-monochrome-white.svg" alt="">
+        <img src="../../assets/logos/icon-left-font-monochrome-white.svg" alt="">
     </router-link>
 </template>
 
@@ -14,4 +14,10 @@
     img {
         height: 50px;
     }
+
+    @media (max-width: 380px) {
+        img {
+          width: 220px;
+        }
+      }
 </style>

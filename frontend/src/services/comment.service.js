@@ -22,11 +22,11 @@ class CommentService {
     console.log('has attempted to fetch')
     const data = await res.json();
     console.log('jsoned');
-    return data;
+    return { ...data.dataValues, User: data.User };
   }
 
   async destroyComment(uuid) {
-    console.log(uuid)
+    console.log(uuid, 'destroyComment')
     if (confirm(`Etes vous sûr de vouloir supprimer ce commentaire?`)) {
       await fetch(`http://localhost:3000/api/publications/commentaires/${uuid}`, {
         method: 'DELETE',

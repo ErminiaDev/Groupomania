@@ -19,18 +19,18 @@
                     <footer class="blockquote-footer text-left"><i>écrit par {{post.User.first_name}} {{post.User.last_name}}</i></footer>
                 </blockquote>
                 <div class="row">
-                  <div class="col-6 text-left">
-                    <a v-if="userRole" href="#" @click="$emit('delete-post', post.id)" class="btn btn-secondary">
+                  <div class="col-md-6 pb-3 pb-md-0 text-left">
+                    <a v-if="userRole" href="#" @click="$emit('delete-post', post.uuid)" class="btn btn-secondary">
                     Supprimer
                     <i class="ml-1 fas fa-times text-right"></i>
                     </a>
                   </div>
-                  <div class="col-6 text-right">
-                    <button type="button" @click="sendPostData" class="mr-2 btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                  <div class="col-md-6 text-right">
+                    <button type="button" @click="sendPostData" class="mb-3 mb-md-0 mr-md-2 btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
                         <i class="far fa-comment-alt"></i> 
                         Commenter
                     </button>
-                    <a @click="$emit('toggle-comments', post.uuid)" class="ml-2 btn btn-outline-success" role="button">
+                    <a @click="$emit('toggle-comments', post.uuid)" class="ml-md-2 btn btn-outline-success" role="button">
                         <i class="far fa-comments"></i>
                         Voir les commentaires
                     </a>
@@ -42,7 +42,7 @@
               <Comments 
                 :comments="post.Comments"
                 v-if="post.show_comments"
-                @delete-comment="$emit('delete-comment', this.comments.uuid)"
+                v-bind="$attrs"
               />
               <AddComment/>
             </div>

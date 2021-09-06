@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <router-view/>
+    <router-view id="content"/>
     <Footer />
   </div>
 </template>
@@ -37,6 +37,8 @@ label {
     font-weight: 400;
 }
 
-
+#content {
+  padding-bottom: 250px;
+}
 </style>
 

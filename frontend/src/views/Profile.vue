@@ -1,4 +1,5 @@
 <template>
+<div id="content">
   <div class="container pb-5">
     <div v-if=loggedIn>
       <header class="jumbotron">
@@ -35,10 +36,8 @@
             </a>
         </div>
     </div>
-    <!-- <div v-else>
-      <p> Veuillez vous connecter pour avoir accès à cette page! </p>
-    </div> -->
   </div>
+</div>
 </template>
 
 <script>
@@ -93,3 +92,18 @@ export default {
   }
 };
 </script>
+<style scoped>
+  #content {
+    height: 100%;
+    background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.45), 
+      rgba(255, 255, 255, 0.45)
+    ),
+    url('../assets/images/fond.jpg')
+    ;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>

@@ -1,9 +1,8 @@
 <template>
     <div class="container">
         <div class="row pb-5">
-            <div class="col-9 mx-auto">
+            <div class="col-md-9 mx-auto">
                 <div class="text-left">
-                    <!-- IMPORTANTdo the toggle i icon the vuejs way -->
                     <button class="btn btn-success my-5 text-left pt-2 pb-1" data-toggle="collapse" href="#collapseAddPost" aria-expanded="false" aria-controls="collapseAddPost">
                         <h2>
                             Ajouter une publication<i class="pl-2 fas fa-caret-down"></i>
@@ -15,13 +14,13 @@
                         <form class="m-5" @submit="onSubmit">
                             <div class="row text-left form-group pb-4 lead">
                                 <label class="col-sm-3" for="titre">Titre</label>
-                                <div class="col-9">
+                                <div class="col-md-9">
                                     <input type="text" v-model="title" class="form-control" id="titre" required>
                                 </div>
                             </div>
                             <div class="row text-left form-group pb-4 lead">
                                 <label class="col-sm-3" for="inlineFormCustomSelect">Catégorie</label>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <select class="custom-select mr-sm-2" v-model="category" id="inlineFormCustomSelect" required>
                                         <option selected>Choisir</option>
                                         <option value="Vie au travail">Vie au travail</option>
@@ -34,7 +33,7 @@
                             </div>
                             <div class="row text-left form-group pb-4 lead">
                                 <label class="col-sm-3" for="texte">Publication</label>
-                                <div class="col-9">
+                                <div class="col-md-9">
                                     <textarea class="form-control" v-model="text" id="texte" rows="5" required></textarea>
                                 </div>
                             </div>

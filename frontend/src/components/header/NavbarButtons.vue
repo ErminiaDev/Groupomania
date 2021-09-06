@@ -1,8 +1,8 @@
 <template>
     <div>
-        <router-link class="btn btn-outline-success ml-2" to="/inscription">{{ btn_name1 }}</router-link>
-        <router-link class="btn btn-outline-primary ml-2" to="/connexion">{{ btn_name2 }}</router-link>
-        <a class="btn btn-outline-secondary ml-2" @click.prevent="logOut" href="#">{{ btn_name3 }}</a>
+        <router-link class="btn btn-outline-success ml-md-2 mx-5 mr-md-0 mb-2 mb-md-0 d-block d-md-inline" to="/inscription">{{ btn_name1 }}</router-link>
+        <router-link class="btn btn-outline-primary ml-md-2 mx-5 mr-md-0 mb-2 mb-md-0 d-block d-md-inline" to="/connexion">{{ btn_name2 }}</router-link>
+        <a class="btn btn-outline-secondary ml-md-2 mx-5 mr-md-0 mb-2 mb-md-0 d-block d-md-inline" @click.prevent="logOut" href="#">{{ btn_name3 }}</a>
     </div>
 </template>
 
@@ -14,10 +14,6 @@
             btn_name2: String,
             btn_name3: String
         },
-        //pour détecter quand l'onglet ou la fenêtre se ferme, et déconnecter l'utilisateur systématiquement
-        /* created() {
-            window.addEventListener('beforeunload', this.logOut)
-        }, */
         methods: {
             logOut() {
                 //supprimer les données dans le store et le localStorage et redirigé vers la connexion

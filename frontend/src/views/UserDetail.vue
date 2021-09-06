@@ -1,4 +1,5 @@
 <template>
+<div id="content">
   <div class="container pb-5">
     <header class="jumbotron">
       <h3>
@@ -7,6 +8,7 @@
     </header>
     <UserInfo @delete-user="deleteUser"/>
   </div>
+</div>
 </template>
 
 <script>
@@ -77,3 +79,18 @@ export default {
   
 };
 </script>
+<style scoped>
+  #content {
+    height: 100%;
+    background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.45), 
+      rgba(255, 255, 255, 0.45)
+    ),
+    url('../assets/images/fond.jpg')
+    ;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>

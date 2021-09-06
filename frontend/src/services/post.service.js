@@ -1,13 +1,7 @@
 //data service
 import authHeader from './auth-header';
 
-//posts
-// const xAccessToken = JSON.stringify(authHeader())
-// const myHeaders = JSON.stringify(authHeader());
-
-
 const currentUserToken = authHeader()["x-access-token"]
-
 
 const myHeaders = new Headers();
 
@@ -24,6 +18,7 @@ class PostService {
         headers: authHeader()
       })
       const posts = await res.json()
+      console.log(posts, 'all posts')
       return posts       
   }
 
@@ -39,7 +34,7 @@ class PostService {
     const data = await res.json();
     console.log('jsoned');
     console.log(this, 'this')
-    return data
+    return { User: data.User, ...data.dataValues }
   }
 
   async destroyPost(uuid) {

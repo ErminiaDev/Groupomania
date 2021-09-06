@@ -12,7 +12,8 @@ exports.createPost = async (req, res) => {
     });
 
     post.save()
-        .then(() => res.status(201).json(post))
+    //adding user info as well so that it can refresh instantly and have the info already (not only hen we load all posts)
+        .then(() => res.status(201).json({ ...post, User: user }))
         .catch(error => res.status(400).json({ error: error.toString() }));
 };
 

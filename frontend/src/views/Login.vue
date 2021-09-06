@@ -1,8 +1,9 @@
 <template>
+<div id="content">
     <div class="container">
         <h1 class="py-5"> Se Connecter</h1>
         <div class="row pb-5">
-            <div class="col-5 mx-auto">
+            <div class="col-md-5 mx-auto">
                 <div class=" bg-primary card border-secondary text-light  my-3 p-4">
                   <Form v-slot="{values}" @submit="handleLogin" :validation-schema="schema">
 
@@ -35,6 +36,7 @@
             </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -92,3 +94,20 @@ export default {
 }
 
 </script>
+
+<style scoped>
+  #content {
+    color: white;
+    height: 100%;
+    background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.45), 
+      rgba(0, 0, 0, 0.45)
+    ),
+    url('../assets/images/interface.jpg')
+    ;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>

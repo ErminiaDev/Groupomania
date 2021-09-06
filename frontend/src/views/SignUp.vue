@@ -1,42 +1,11 @@
 <template>
+<div id="content">
     <div class="container">
         <h1 class="py-5"> S'inscrire</h1>
-        <!-- <h1 class="py-5">Se Connecter</h1> -->
         <div class="row pb-5">
-            <div class="col-5 mx-auto">
+            <div class="col-md-5 mx-auto">
                 <div class="bg-success card border-secondary text-light my-3 p-4">
-                   <!-- <Form @submit="clicked">
-                    <p>
-                      These inputs use global validators to perform validation, the second
-                      argument can be defined as another field's value by prefixing that field
-                      name with `@`
-                    </p>
-
-                    <div>
-                      <label for="password">Password</label>
-                      <Field
-                        id="password"
-                        name="password"
-                        type="password"
-                        
-                      />
-                      <ErrorMessage name="password" />
-                    </div>
-
-                    <div>
-                      <label for="passwordConfirmation">Confirm Password </label>
-                      <Field
-                        id="passwordConfirmation"
-                        name="passwordConfirmation"
-                        type="password"
-                      />
-                      <ErrorMessage name="passwordConfirmation" />
-                    </div>
-
-                    <button type="submit">Submit</button>
-                  </Form> -->
-<!--                   <Form @submit="clicked" :validation-schema="schema">
- -->                 <Form @submit="handleSignUp" :validation-schema="schema">
+                  <Form @submit="handleSignUp" :validation-schema="schema">
                       <div v-if="!successful">
 
                         <div class="form-group pb-4 lead">
@@ -94,6 +63,7 @@
             </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -180,3 +150,20 @@ export default {
 }
 
 </script>
+
+<style scoped>
+  #content {
+    color: white;
+    height: 100%;
+    background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.45), 
+      rgba(0, 0, 0, 0.45)
+    ),
+    url('../assets/images/interface.jpg')
+    ;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
