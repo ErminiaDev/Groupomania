@@ -1,6 +1,6 @@
 <template>
     <router-link class="navbar-brand mr-3 py-3" to="/">
-        <img src="../../assets/logos/icon-left-font-monochrome-white.svg" alt="">
+        <a href="localhost:8080"><img src="../../assets/logos/icon-left-font-monochrome-white.svg" alt="logo Groupomania"></a>
     </router-link>
 </template>
 

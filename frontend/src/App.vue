@@ -40,5 +40,11 @@ label {
 #content {
   padding-bottom: 250px;
 }
+
+button:focus, 
+a:focus,
+input:focus {
+border: 2px solid red;
+}
 </style>
 
