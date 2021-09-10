@@ -3,9 +3,9 @@
     <div id="user-card" class="pb-5 col-lg-4 col-sm-6 col-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title pt-3">{{ user.first_name }} {{ user.last_name }}</h5>
+            <h2 class="card-title pt-3">{{ user.first_name }} {{ user.last_name }}</h2>
             <!-- conditionner la vue de l'H6 à l'admin -->
-            <h6 class="card-subtitle my-3 text-muted">{{ user.uuid }}</h6>
+            <h3 class="card-subtitle my-3 text-muted">{{ user.uuid }}</h3>
             <p class="card-text my-2">{{ user.email }}</p>
             <div class="row py-3">
               <div class="col-12 text-center">
@@ -40,4 +40,12 @@ export default {
     #user-card {
         margin: 0 auto
     }
+
+    #user-card h2{
+      font-size: 1.4em;
+    }
+
+  #user-card h3{
+    font-size: 1.2em;
+  }
 </style>

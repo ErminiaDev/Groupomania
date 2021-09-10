@@ -5,7 +5,7 @@
               <div class="modal-header">
                 <h5 class="modal-title">Ajouter un commentaire</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                  <span>&times;</span>
                 </button>
               </div>
             <form class="my-2 mx-4" @submit="onSubmit">

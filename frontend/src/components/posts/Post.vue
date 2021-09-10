@@ -11,7 +11,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-12 text-left">
-                    <h3 class="card-title text-left"> {{ post.title }}</h3>
+                    <h2 class="card-title text-left"> {{ post.title }}</h2>
                   </div>
                 </div>                
                 <p class="card-text text-left"> {{ post.text }} </p>

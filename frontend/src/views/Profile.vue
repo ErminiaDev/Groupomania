@@ -3,23 +3,26 @@
   <div class="container pb-5">
     <div v-if=loggedIn>
       <header class="jumbotron">
-        <h3>
+        <h2>
           Profil de <strong>{{currentUser.first_name}} {{currentUser.last_name}}</strong> 
-        </h3>
+        </h2>
       </header>
-      <p>
-        <strong>Token:</strong>
+      
+        <h3 class="d-inline"><strong>Token:</strong></h3>
         {{currentUser.token.substring(0, 20)}} ... {{currentUser.token.substr(currentUser.token.length - 20)}}
-      </p>
-      <p>
-        <strong>Identifiant unique:</strong>
+        <br>
+        <br>
+      
+        <h3 class="d-inline"><strong>Identifiant unique:</strong></h3>
         {{currentUser.uuid}}
-      </p>
-      <p>
-        <strong>Email:</strong>
+        <br>
+        <br>
+      
+        <h3 class="d-inline"><strong>Email:</strong></h3>
         {{currentUser.email}}
-      </p>
-      <strong>Droits:</strong>
+        <br>
+        <br>
+      <h3 class="d-inline"><strong>Droits:</strong></h3>
       {{displayRole}}
     </div>
     <div class="row py-4">
@@ -105,5 +108,9 @@ export default {
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  h3 {
+    font-size: 1.2em;
   }
 </style>
