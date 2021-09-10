@@ -17,9 +17,8 @@ router.get("/:uuid", postCtrl.findOnePost)
 router.post("/", auth, postCtrl.createPost);
 
 //delete post
-router.delete("/:uuid", postCtrl.deletePost);
+router.delete("/:uuid", auth, postCtrl.deletePost);
 
-//edit a post
-router.put('/:uuid', postCtrl.updatePost);
+
 
 module.exports = router;

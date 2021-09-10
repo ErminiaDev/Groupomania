@@ -38,22 +38,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    /* userId: {
-       type: DataTypes.INTEGER,
-       references: {
-          model: 'Users', // 'Users' refers to table name
-          key: 'id', // 'uuid' refers to column name in users table
-       },
-       allowNull: false,
-    },
-    postId: {
-       type: DataTypes.INTEGER,
-       references: {
-          model: 'Posts', // 'Posts' refers to table name
-          key: 'id', // 'uuid' refers to column name in posts table
-       },
-       allowNull: false,
-    } */
   }, {
     sequelize,
     modelName: 'Comment',

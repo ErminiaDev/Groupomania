@@ -5,7 +5,8 @@
         <div class="row pb-5">
             <div class="col-md-5 mx-auto">
                 <div class=" bg-primary card border-secondary text-light  my-3 p-4">
-                  <Form v-slot="{values}" @submit="handleLogin" :validation-schema="schema">
+<!--                   <Form v-slot="{values}" @submit="handleLogin" :validation-schema="schema">
+ -->                  <Form @submit="handleLogin" :validation-schema="schema">
 
                         <div class="form-group pb-4 lead">
                           <label for="email">Adresse email</label>
@@ -27,8 +28,8 @@
                           </button>
                         </div>
 
-                        <pre>{{ values }}</pre>
-                        <div class="form-group">
+<!--                         <pre>{{ values }}</pre>
+ -->                        <div class="form-group">
                           <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
                         </div>
                     </Form>
@@ -74,7 +75,7 @@ export default {
     methods: {
       handleLogin(values) {
         this.loading = true;
-        console.log('handling login')
+        //console.log('handling login')
         this.$store.dispatch("auth/login", values).then(
           () => {
             this.$router.push("/profile");

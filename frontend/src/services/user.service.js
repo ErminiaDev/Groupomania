@@ -14,7 +14,7 @@ myHeaders.append('x-access-token', currentUserToken);
 class UserService {
 
  async getAllUsers() {
-        console.log('getting all users')
+        //console.log('getting all users')
         const res = await fetch(`http://localhost:3000/api/utilisateurs`, {
             method: 'GET',
             headers: authHeader()
@@ -24,7 +24,7 @@ class UserService {
     }
 
 async destroyUser(uuid) {
-  console.log('about to delete user')
+  //console.log('about to delete user')
   if (confirm(`Etes vous sûr de vouloir supprimer cet utilisateur?`)) {
     return fetch(`http://localhost:3000/api/utilisateurs/${uuid}`, {
       method: 'DELETE',
@@ -34,16 +34,16 @@ async destroyUser(uuid) {
 }
 
  async updateUser(modifiedUser) { 
-     console.log(authHeader());
-     console.log(JSON.stringify(modifiedUser));
+     //console.log(authHeader());
+    // console.log(JSON.stringify(modifiedUser));
    const res = await fetch(`http://localhost:3000/api/utilisateurs/${modifiedUser.uuid}}`, {
        method: 'PUT',
        headers: myHeaders,
        body: JSON.stringify(modifiedUser),
      })
-     console.log('has attempted to fetch')
+     //console.log('has attempted to fetch')
      const data = await res.json();
-     console.log('jsoned');
+     //console.log('jsoned');
      return data;
    }
 }

@@ -12,33 +12,33 @@ myHeaders.append('x-access-token', currentUserToken);
 class PostService {
 
   async getAllPosts() {
-      console.log('getting all posts')
+      //console.log('getting all posts')
       const res = await fetch(`http://localhost:3000/api/publications`, {
         method: 'GET',
         headers: authHeader()
       })
       const posts = await res.json()
-      console.log(posts, 'all posts')
+      //console.log(posts, 'all posts')
       return posts       
   }
 
   async addPost(newPost) { 
-    console.log(authHeader());
-    console.log(JSON.stringify(newPost));
+    //console.log(authHeader());
+    //console.log(JSON.stringify(newPost));
   const res = await fetch('http://localhost:3000/api/publications', {
       method: 'POST',
       headers: myHeaders,
       body: JSON.stringify(newPost),
     })
-    console.log('has attempted to fetch')
+    //console.log('has attempted to fetch')
     const data = await res.json();
-    console.log('jsoned');
-    console.log(this, 'this')
-    return { User: data.User, ...data.dataValues }
+    //console.log('jsoned');
+    //console.log(this, 'this')
+    return { User: data.User, Comments: data.Comments, ...data.dataValues }
   }
 
   async destroyPost(uuid) {
-    console.log(uuid)
+    //console.log(uuid)
     if (confirm(`Etes vous sûr de vouloir supprimer ce post?`)) {
       await fetch(`http://localhost:3000/api/publications/${uuid}`, {
         method: 'DELETE',

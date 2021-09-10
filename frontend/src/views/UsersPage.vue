@@ -27,7 +27,6 @@ export default {
   async created() {
     try {
       this.users = await userService.getAllUsers() 
-      console.log()
     } catch (error) {
       error.toString()
     }

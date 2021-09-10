@@ -3,7 +3,7 @@ const db = require('../models');
 exports.createPost = async (req, res) => {
     //fetching user with uuid from the front end
     const user = await db.User.findOne({ where: { uuid : req.body.userId }});
-    console.log('userID', user.id)
+    //console.log('userID', user.id)
     const post = new db.Post({
         UserId: user.id,
         title: req.body.title,
@@ -13,18 +13,8 @@ exports.createPost = async (req, res) => {
 
     post.save()
     //adding user info as well so that it can refresh instantly and have the info already (not only hen we load all posts)
-        .then(() => res.status(201).json({ ...post, User: user }))
+        .then(() => res.status(201).json({ ...post, User: user, Comments: [] }))
         .catch(error => res.status(400).json({ error: error.toString() }));
-};
-
-exports.updatePost = (req, res, next) => {
-    db.Post.updateOne({ 
-      uuid: req.params.id 
-      }, { 
-          ...req.body, uuid: req.params.id 
-          })
-    .then(() => res.status(200).json({ message: 'Publication modifiée !'}))
-    .catch(error => res.status(400).json({ error }));
 };
 
 exports.deletePost = (req, res) => {

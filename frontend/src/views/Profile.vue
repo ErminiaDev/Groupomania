@@ -75,18 +75,18 @@ export default {
     },
     logOut() {
         //supprimer les données dans le store et le localStorage et redirigé vers la connexion
-        console.log('logging out')
+        //console.log('logging out')
       localStorage.removeItem('userData')
       this.$store.dispatch('auth/logout');
       this.$router.push('/connexion');
     },
     async deleteUser() {
       try { 
-        console.log(this.currentUser.uuid, 'eee')
+        //console.log(this.currentUser.uuid, 'eee')
         await userService.destroyUser(this.currentUser.uuid)
         this.logOut()
       } catch (error) {
-        console.log(error.toString())
+        //console.log(error.toString())
       }
     },
   }

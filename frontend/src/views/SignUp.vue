@@ -119,10 +119,10 @@ export default {
     },
     methods: {
       clicked(){
-        console.log('clicked');
+        //console.log('clicked');
       },
         handleSignUp(values) {
-          console.log('handling signup', values)
+          //console.log('handling signup', values)
           this.message = "";
           this.successful = false;
           this.loading = true;

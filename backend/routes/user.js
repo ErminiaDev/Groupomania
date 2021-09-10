@@ -22,10 +22,10 @@ router.post("/signup", userCtrl.signUp);
 router.post("/login", userCtrl.login);
 
 //delete user
-router.delete("/:uuid", userCtrl.deleteUser);
+router.delete("/:uuid", auth, userCtrl.deleteUser);
 
 //edit a user
 //router.put('/:id', auth, userCtrl.updateUser);
-router.put('/:uuid', userCtrl.updateUser);
+router.put('/:uuid', auth, userCtrl.updateUser);
 
 module.exports = router;

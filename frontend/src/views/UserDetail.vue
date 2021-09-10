@@ -54,21 +54,21 @@ export default {
   methods: {
     logOut() {
         //supprimer les données dans le store et le localStorage et redirigé vers la connexion
-      console.log('loggin out')
+      //console.log('loggin out')
       localStorage.removeItem('userData')
       this.$store.dispatch('auth/logout');
       this.$router.push('/connexion');
     },
     async deleteUser(uuid) {
       try { 
-        console.log(uuid, 'eeeqkj')
+        //console.log(uuid, 'eeeqkj')
         await userService.destroyUser(uuid)
-        console.log('destroyed')
+        //console.log('destroyed')
         //this.users = this.users.filter((user) => user.uuid !== uuid)
         if (uuid === this.currentUser.uuid) {
           this.logOut()
         } else {
-          console.log('pushing to       profile')
+         //console.log('pushing to       profile')
           this.$router.push('/profile');
         }
       } catch (error) {
