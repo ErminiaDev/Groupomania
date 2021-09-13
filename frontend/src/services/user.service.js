@@ -3,14 +3,6 @@ import authHeader from './auth-header';
 
 //users
 
-const currentUserToken = authHeader()["x-access-token"]
-
-
-const myHeaders = new Headers();
-
-myHeaders.append('Content-Type', 'application/json');
-myHeaders.append('x-access-token', currentUserToken);
-
 class UserService {
 
  async getAllUsers() {
@@ -38,7 +30,10 @@ async destroyUser(uuid) {
     // console.log(JSON.stringify(modifiedUser));
    const res = await fetch(`http://localhost:3000/api/utilisateurs/${modifiedUser.uuid}}`, {
        method: 'PUT',
-       headers: myHeaders,
+      headers: {
+        ...authHeader(),
+        'Content-Type': 'application/json'
+      },
        body: JSON.stringify(modifiedUser),
      })
      //console.log('has attempted to fetch')

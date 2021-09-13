@@ -30,6 +30,9 @@ export default {
             const user = JSON.parse(userString)
             return user
         },
+        currentUser() {
+          return this.$store.state.auth.user;
+        },
         displayRole() {
           if (this.currentUser.is_admin === 0) {
             return 'Utilisateur';
@@ -51,16 +54,9 @@ export default {
   methods: {
     async modifyUser(modifyUser) {
       try { 
-        console.log(modifyUser, 'eee')
         const user = await userService.updateUser(modifyUser)
-        console.log(user, 'user')
-        //first step before changing in vuex
-        const prevUser = JSON.parse(localStorage.getItem('user'))
-
-        localStorage.setItem('user', JSON.stringify({ ...user, token: prevUser.token }));
-        this.$store.commit('auth/loginSuccess', { ...user, token: prevUser.token })
-        this.$router.push('/profile');
-        //display a message saying post is published
+        localStorage.setItem('userData', JSON.stringify({ ...user}));
+        this.$router.push('/utilisateurs/:uuid');
       } catch (error) {
         console.log(error.toString())
       }

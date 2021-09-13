@@ -1,14 +1,6 @@
 //data service
 import authHeader from './auth-header';
 
-const currentUserToken = authHeader()["x-access-token"]
-
-const myHeaders = new Headers();
-
-myHeaders.append('Content-Type', 'application/json');
-myHeaders.append('x-access-token', currentUserToken);
-
-
 class CommentService {
 
   async addComment(newComment) { 
@@ -16,7 +8,10 @@ class CommentService {
     //console.log(JSON.stringify(newComment));
   const res = await fetch(`http://localhost:3000/api/publications/commentaires`, {
       method: 'POST',
-      headers: myHeaders,
+      headers: {
+        ...authHeader(),
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(newComment),
     })
     //console.log('has attempted to fetch')

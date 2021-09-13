@@ -1,14 +1,6 @@
 //data service
 import authHeader from './auth-header';
 
-const currentUserToken = authHeader()["x-access-token"]
-
-const myHeaders = new Headers();
-
-myHeaders.append('Content-Type', 'application/json');
-myHeaders.append('x-access-token', currentUserToken);
-
-
 class PostService {
 
   async getAllPosts() {
@@ -23,17 +15,18 @@ class PostService {
   }
 
   async addPost(newPost) { 
-    //console.log(authHeader());
-    //console.log(JSON.stringify(newPost));
+    console.log(authHeader());
+    console.log(JSON.stringify(newPost));
   const res = await fetch('http://localhost:3000/api/publications', {
       method: 'POST',
-      headers: myHeaders,
+      headers: {
+        ...authHeader(),
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(newPost),
     })
-    //console.log('has attempted to fetch')
     const data = await res.json();
-    //console.log('jsoned');
-    //console.log(this, 'this')
+    console.log(data.User, data.Comments)
     return { User: data.User, Comments: data.Comments, ...data.dataValues }
   }
 

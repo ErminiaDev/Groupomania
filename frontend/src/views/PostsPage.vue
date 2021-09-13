@@ -37,7 +37,7 @@ export default {
       //ajouter un post
       async newPost(newPost) {
         try { 
-          //console.log(newPost)
+          console.log(newPost)
           const post = await postService.addPost(newPost)
           console.log(post, 'post')
           this.posts = [post, ...this.posts]

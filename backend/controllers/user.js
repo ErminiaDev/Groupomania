@@ -38,6 +38,7 @@ exports.login = (req, res, next) => {
                 if (!valid) {
                     return res.status(401).json({ error: 'Mot de passe incorrect!' }) 
                 }
+                console.log(user, 'user when log in')
                 res.status(200).json({
                     id: user.id,
                     uuid: user.uuid,
