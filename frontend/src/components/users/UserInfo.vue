@@ -18,15 +18,6 @@
         <div class="form-group row pb-4 lead ">
           <div class="col-8 mx-auto">
             <div class="row">
-              <label class="col-sm-4 text-right" for="uuid">Identifiant unique</label>
-              <Field name="uuid" type="text" :value="this.user.uuid" class="form-control col-sm-8" readonly/>
-              <ErrorMessage name="uuid" class="error-feedback" />
-            </div>
-          </div>
-        </div>  
-        <div class="form-group row pb-4 lead ">
-          <div class="col-8 mx-auto">
-            <div class="row">
               <label class="col-sm-4 text-right" for="email">Adresse email</label>
               <Field name="email" type="text" class="form-control col-sm-8" />
               <ErrorMessage name="email" class="error-feedback" />

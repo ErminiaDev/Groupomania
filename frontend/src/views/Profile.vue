@@ -8,16 +8,6 @@
         </h2>
       </header>
       
-        <h3 class="d-inline"><strong>Token:</strong></h3>
-        {{currentUser.token.substring(0, 20)}} ... {{currentUser.token.substr(currentUser.token.length - 20)}}
-        <br>
-        <br>
-      
-        <h3 class="d-inline"><strong>Identifiant unique:</strong></h3>
-        {{currentUser.uuid}}
-        <br>
-        <br>
-      
         <h3 class="d-inline"><strong>Email:</strong></h3>
         {{currentUser.email}}
         <br>
